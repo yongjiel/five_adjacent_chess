@@ -12,8 +12,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Game from './Game.js';
-import Board from './Board.js';
-import Square from './Square.js';
 
 /*
 class Square extends React.Component {
