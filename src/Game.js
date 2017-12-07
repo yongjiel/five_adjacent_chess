@@ -6,7 +6,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
 
-    let rows = 12; // 8 * 8 button matrix
+    let rows = props.rows; // 8 * 8 button matrix
     let win_rule = 5; // 5 adjacent buttons with same char.
     if (win_rule > rows){
       alert("Error: adjacent buttons # > matrx row size!!!");

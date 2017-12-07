@@ -34,7 +34,7 @@ class Square extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <Game rows='15'/>,
   document.getElementById('root')
 );
 
