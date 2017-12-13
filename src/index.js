@@ -17,7 +17,7 @@ import Game from './Game.js';
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <Game rows='15'/>,
   document.getElementById('root')
 );
 
