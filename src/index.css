@@ -47,5 +47,18 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+  margin-right: 20px;
+  max-width: 20%;
+  max-height: 20%;
 }
 
+.game-input{
+  
+  /*background: gold;*/
+}
+
+.game-board{
+  float: left;
+  max-width: 50%;
+  max-height: 50%;
+}

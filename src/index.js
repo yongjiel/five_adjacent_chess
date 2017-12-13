@@ -13,23 +13,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Game from './Game.js';
 
-/*
-class Square extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render(value) {
-    return (
-      //<button className="square" onClick={() => alert('click ' + this.props.value)} >
-      //  {this.props.value}
-      <button className="square" onClick={ () => this.props.onClick() }>
-        {this.props.value}
-      </button>
-    );
-  }
-}
-*/
 
 // ========================================
 

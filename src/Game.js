@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import Board from './Board.js';
+import Rows from './square_rows.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Game extends React.Component {
       xIsNext: true,
       stepNumber: 0,
       rows: rows, 
+      fixed: false, // after rows is changed in input box, it is true. No more change further.
       locations: [{
         row: 0,
         col: 0,
@@ -238,6 +240,7 @@ class Game extends React.Component {
         col: col
       }]),
       bold: history.length,
+      fixed: true,
     });
   }
 
@@ -256,6 +259,38 @@ class Game extends React.Component {
             })
             this.jumpTo(step)
     }
+
+  focusInCurrentTarget(relatedTarget, currentTarget){
+    if (relatedTarget === null) return false;
+    
+    var node = relatedTarget.parentNode;
+          
+    while (node !== null) {
+      if (node === currentTarget) return true;
+      node = node.parentNode;
+    }
+
+    return false;
+  }
+
+  disableInput(e){
+    if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
+      this.setState({
+        fixed: true,
+      })
+    }
+  }
+
+  updateInputValue(evt){
+    var value = evt.target.value;
+    if( value && ! value.toString().match(/^\d+$/)){
+      alert("Value must be integer!!!");
+      return;
+    }
+    this.setState({
+      rows: value,
+    })
+  }
 
   toggle(){
     let order = this.state.order;
@@ -287,6 +322,7 @@ class Game extends React.Component {
       var bold = this.state.bold
       var bold1 = bold > -1? "bold": ""
       var blue_color = bold>-1? "blue": ""
+      // bind method is very interesting. It is able to take extra args.
       return (
         <li key={move}>
            <button 
@@ -314,25 +350,33 @@ class Game extends React.Component {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       win_color = 'black'
     }
-
+    // When using bind in updateInputValue function, this can be used inside updateInputValue()
     return (
-      <div className="game" key={"Game1"}>
-        <div className="game-board" key={"Board1"}>
-          <Board
-            match={this.state.match}
-            rows={this.state.rows} 
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
+      <div  key={"Game1"}>
+        <div className="game-input" key={"rows"}> 
+          <Rows rows={this.state.rows} 
+                onChange={ this.updateInputValue.bind(this) }
+                onBlur={this.disableInput.bind(this)}
+                fixed={this.state.fixed}/> 
+        </div>  <br/> 
+        <div className="game">
+          <div className="game-board" key={"Board1"}>
+            <Board
+              match={this.state.match}
+              rows={this.state.rows} 
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
 
-        </div>
-        <div className="game-info">
-           <ul><button onClick={()=>this.restart()}> Restart the Game</button></ul>
-           <ul><div style={this.state.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
-          <ul><button onClick={ this.toggle.bind(this) }><b>{this.state.order}</b></button></ul>
-          <ol reversed={this.state.order==='Descend'? true: false}>
-              {this.state.order==='Descend'? moves.reverse(): moves}
-          </ol>
+          </div>
+          <div className="game-info">
+             <ul><button onClick={()=>this.restart()}> Restart the Game</button></ul>
+             <ul><div style={this.state.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
+            <ul><button onClick={ this.toggle.bind(this) }><b>{this.state.order}</b></button></ul>
+            <ol reversed={this.state.order==='Descend'? true: false}>
+                {this.state.order==='Descend'? moves.reverse(): moves}
+            </ol>
+          </div>
         </div>
       </div>
     );
