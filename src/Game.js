@@ -332,7 +332,7 @@ class Game extends React.Component {
                           } : {} } 
                     onClick={ this.changeColorAndJumpTo.bind(this, move) }
             > 
-              {desc} Row: {current_location.row} Col: {current_location.col}
+              {desc},  Row: {current_location.row} Col: {current_location.col}
            </button>
         </li>
       );
