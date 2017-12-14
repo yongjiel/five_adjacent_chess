@@ -27,7 +27,7 @@ class Game extends React.Component {
         row: 0,
         col: 0,
       }],
-      bold: -1,
+      bold: false,
       winner_stepNumber: -1,
       winner: null,
       order: "Ascend",
@@ -239,7 +239,7 @@ class Game extends React.Component {
         row: row,
         col: col
       }]),
-      bold: history.length,
+      bold: true,
       fixed: true,
     });
   }
@@ -254,9 +254,9 @@ class Game extends React.Component {
   }
 
   changeColorAndJumpTo(step){
-            this.setState({
-              bold: step,
-            })
+            this.setState(
+              step > 0? {bold: true} : {bold: false}
+            )
             this.jumpTo(step)
     }
 
@@ -320,13 +320,13 @@ class Game extends React.Component {
          'Go to game start';
       const current_location = this.state.locations[move];
       var bold = this.state.bold
-      var bold1 = bold > -1? "bold": ""
-      var blue_color = bold>-1? "blue": ""
+      var bold1 = bold? "bold": ""
+      var blue_color = bold? "blue": ""
       // bind method is very interesting. It is able to take extra args.
       return (
         <li key={move}>
            <button 
-                    style={ bold===move? {
+                    style={ bold? {
                             fontWeight: bold1,
                             color: blue_color,
                           } : {} } 
