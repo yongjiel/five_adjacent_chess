@@ -18,10 +18,10 @@ class Game extends React.Component {
     this.state = {
       history: [{
         squares: Array(rows ** 2).fill(null),
-      }],
+      }], // initiate state of squares of the board
       xIsNext: true,
       stepNumber: 0,
-      rows: rows, 
+      rows: rows, // also is the number of columns.
       fixed: false, // after rows is changed in input box, it is true. No more change further.
       locations: [{
         row: 0,
@@ -31,7 +31,7 @@ class Game extends React.Component {
       winner_stepNumber: -1,
       winner: null,
       order: "Ascend",
-      match: [],
+      match: [], //keep all the steps' states.
       lines: lines,
       win_rule: win_rule, 
     };
