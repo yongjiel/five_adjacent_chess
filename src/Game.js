@@ -18,7 +18,7 @@ class Game extends React.Component {
     this.state = {
       history: [{
         squares: Array(rows ** 2).fill(null),
-      }], // initiate state of squares of the board
+      }], // initiate state of squares of the board and keep all the steps' states of all squares.
       xIsNext: true,
       stepNumber: 0,
       rows: rows, // also is the number of columns.
@@ -31,7 +31,7 @@ class Game extends React.Component {
       winner_stepNumber: -1,
       winner: null,
       order: "Ascend",
-      match: [], //keep all the steps' states.
+      match: [], 
       lines: lines,
       win_rule: win_rule, 
     };
