@@ -61,7 +61,7 @@ class Game extends React.Component {
     }
       
     //diagonal 
-    j = 0; //column
+    j = 0; //column, start with first column with 0
     tmp = [];
     for(i=0; i < rows; i++){
         tmp.push(j + i * rows);
@@ -69,7 +69,7 @@ class Game extends React.Component {
       }
     lines.push(tmp);
 
-    j = rows - 1; //column
+    j = rows - 1; //column, start last column with rows-1
     tmp = [];
     for(i=0; i < rows; i++){
         tmp.push(j + i * rows);
