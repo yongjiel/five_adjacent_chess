@@ -31,7 +31,7 @@ class Game extends React.Component {
       winner_stepNumber: -1,
       winner: null,
       order: "Ascend",
-      match: [], 
+      match: [], // hold the square indices(linear in array) when win the game.
       lines: lines,
       win_rule: win_rule, 
     };
