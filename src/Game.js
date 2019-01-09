@@ -10,7 +10,7 @@ class Game extends React.Component {
     let rows = props.rows; // 8 * 8 button matrix
     let win_rule = 5; // 5 adjacent buttons with same char.
     if (win_rule > rows){
-      alert("Error: adjacent buttons # > matrx row size!!!");
+      alert("Error: the board must bigger than " + win_rule +  " X " + win_rule + "!!!");
     } 
     let lines = this.generate_win_lines(rows);
     
