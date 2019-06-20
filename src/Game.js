@@ -308,7 +308,7 @@ class Game extends React.Component {
     this.setState(this.state_cp)
   }
 
-  render() {
+  moves(){
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     //const winner = calculateWinner(current.squares);
@@ -337,7 +337,18 @@ class Game extends React.Component {
         </li>
       );
     });
+    return moves;
+  }
 
+  get_current_square(){
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    return current;
+  }
+
+  render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
     let status;
     let win_color;
     let bold2;
@@ -374,7 +385,7 @@ class Game extends React.Component {
              <ul><div style={this.state.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
             <ul><button onClick={ this.toggle.bind(this) }><b>{this.state.order}</b></button></ul>
             <ol reversed={this.state.order==='Descend'? true: false}>
-                {this.state.order==='Descend'? moves.reverse(): moves}
+                {this.state.order==='Descend'? this.moves().reverse(): this.moves()}
             </ol>
           </div>
         </div>
