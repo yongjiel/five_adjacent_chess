@@ -2,8 +2,11 @@ import React from 'react';
 import './index.css';
 import Board from './Board.js';
 import Rows from './square_rows.js';
+import { connect } from 'react-redux';
+import { increment, decrement, reset, click_grid } from './actions';
 
 class Game extends React.Component {
+  /*
   constructor(props) {
     super(props);
 
@@ -40,7 +43,7 @@ class Game extends React.Component {
       ...this.state
     };
   }
-
+  */
   generate_win_lines(rows){
     let lines = [];
     // row first, column second
@@ -80,11 +83,11 @@ class Game extends React.Component {
   }
 
   right_count(squares, row, col){
-    var n = row * this.state.rows + col;
+    var n = row * this.props.rows + col;
     var locations = [n];
     var adjacent_count = 1;
-    for(var j=col+1; j < this.state.rows; j++){
-      var m = row * this.state.rows + j;
+    for(var j=col+1; j < this.props.rows; j++){
+      var m = row * this.props.rows + j;
       if(squares[n] === squares[m]){
         adjacent_count += 1;
         locations.push(m);
@@ -96,11 +99,11 @@ class Game extends React.Component {
   }
 
   down_count(squares, row, col){
-    var n = row * this.state.rows + col;
+    var n = row * this.props.rows + col;
     var locations = [n];
     var adjacent_count = 1;
-    for(var i=row+1; i < this.state.rows; i++){
-      var m = i * this.state.rows + col;
+    for(var i=row+1; i < this.props.rows; i++){
+      var m = i * this.props.rows + col;
       if(squares[n] === squares[m]){
         adjacent_count += 1;
         locations.push(m);
@@ -112,13 +115,13 @@ class Game extends React.Component {
   }
 
   right_up_count(squares, row, col){
-    var n = row * this.state.rows + col;
+    var n = row * this.props.rows + col;
     var locations = [n];
     var adjacent_count = 1;
     for(var i=row-1; i >= 0; i--){
       col = col + 1;
-      if (col < this.state.rows){
-        var m = i * this.state.rows + col;
+      if (col < this.props.rows){
+        var m = i * this.props.rows + col;
         if(squares[n] === squares[m]){
           adjacent_count += 1;
           locations.push(m);
@@ -131,13 +134,13 @@ class Game extends React.Component {
   }
 
   right_down_count(squares, row, col){
-    var n = row * this.state.rows + col;
-    var locations = [row * this.state.rows + col];
+    var n = row * this.props.rows + col;
+    var locations = [row * this.props.rows + col];
     var adjacent_count = 1;
-    for(var i=row+1; i < this.state.rows; i++){
+    for(var i=row+1; i < this.props.rows; i++){
       col = col + 1;
-      if (col < this.state.rows){
-        var m = i * this.state.rows + col;
+      if (col < this.props.rows){
+        var m = i * this.props.rows + col;
         if(squares[n] === squares[m]){
           adjacent_count += 1;
           locations.push(m);
@@ -150,7 +153,7 @@ class Game extends React.Component {
   }
 
   look_for_row_column_in_board(r, c, squares){
-    var n = this.state.rows * r + c;
+    var n = this.props.rows * r + c;
     if (squares[n]){
       return [r, c]; // row and colum start from 0
     }
@@ -158,7 +161,7 @@ class Game extends React.Component {
   }
 
   look_for_adjacents(i, j, squares){
-    const win_rule = this.state.win_rule;
+    const win_rule = this.props.win_rule;
     var location = this.look_for_row_column_in_board(i, j, squares);
     var row = location? location[0] : -1;
     var col = location? location[1] : -1;
@@ -197,8 +200,8 @@ class Game extends React.Component {
         vertical or diagnol with the same Chars. It wins the game.
     */
     var adjacent_array;
-    for(var i=0; i < this.state.rows; i++){
-      for(var j=0; j < this.state.rows; j++){
+    for(var i=0; i < this.props.rows; i++){
+      for(var j=0; j < this.props.rows; j++){
         adjacent_array = this.look_for_adjacents(i, j, squares);
         if(adjacent_array){
           return adjacent_array;
@@ -209,16 +212,16 @@ class Game extends React.Component {
   }
 
   handleClick(i){
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares =  current.squares.slice();
-    const locations = this.state.locations;
+    const locations = this.props.locations;
 
     // Do nothing if someone has already won the game or if a square is already filled
     if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.props.xIsNext ? 'X' : 'O';
     let match_in_line = this.calculateWinner(squares);
     if (match_in_line) {
       this.setState({
@@ -227,14 +230,14 @@ class Game extends React.Component {
         match: match_in_line,
       })
     }
-    const row = Math.floor(i / this.state.rows) + 1;
-    const col = i - (row -1) * this.state.rows + 1;
+    const row = Math.floor(i / this.props.rows) + 1;
+    const col = i - (row -1) * this.props.rows + 1;
     this.setState({
       history: history.concat([{
         squares: squares,
       }]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      xIsNext: !this.props.xIsNext,
       locations: locations.concat([{
         row: row,
         col: col
@@ -293,8 +296,8 @@ class Game extends React.Component {
   }
 
   toggle(){
-    let order = this.state.order;
-    if (this.state.order === 'Ascend'){
+    let order = this.props.order;
+    if (this.props.order === 'Ascend'){
         order = 'Descend'
     }else{
         order = 'Ascend'
@@ -305,12 +308,12 @@ class Game extends React.Component {
   }
 
   restart(){
-    this.setState(this.state_cp)
+    this.props.reset()
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const history = this.props.history;
+    const current = history[this.props.stepNumber];
     //const winner = calculateWinner(current.squares);
     
 
@@ -318,8 +321,8 @@ class Game extends React.Component {
       const desc = move ?
          'Go to move #' + move :
          'Go to game start';
-      const current_location = this.state.locations[move];
-      var bold = this.state.bold
+      const current_location = this.props.locations[move];
+      var bold = this.props.bold
       var bold1 = bold > -1? "bold": ""
       var blue_color = bold>-1? "blue": ""
       // bind method is very interesting. It is able to take extra args.
@@ -341,29 +344,29 @@ class Game extends React.Component {
     let status;
     let win_color;
     let bold2;
-    if (this.state.winner_stepNumber > -1) {
-      status = 'Winner: ' + this.state.winner ;
+    if (this.props.winner_stepNumber > -1) {
+      status = 'Winner: ' + this.props.winner ;
       win_color = "red"
       bold2 = 'bold'
     
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
       win_color = 'black'
     }
     // When using bind in updateInputValue function, this can be used inside updateInputValue()
     return (
       <div  key={"Game1"}>
         <div className="game-input" key={"rows"}> 
-          <Rows rows={this.state.rows} 
+          <Rows rows={this.props.rows} 
                 onChange={ this.updateInputValue.bind(this) }
                 onBlur={this.disableInput.bind(this)}
-                fixed={this.state.fixed}/> 
+                fixed={this.props.fixed}/> 
         </div>  <br/> 
         <div className="game">
           <div className="game-board" key={"Board1"}>
             <Board
-              match={this.state.match}
-              rows={this.state.rows} 
+              match={this.props.match}
+              rows={this.props.rows} 
               squares={current.squares}
               onClick={(i) => this.handleClick(i)}
             />
@@ -371,10 +374,10 @@ class Game extends React.Component {
           </div>
           <div className="game-info">
              <ul><button onClick={()=>this.restart()}> Restart the Game</button></ul>
-             <ul><div style={this.state.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
-            <ul><button onClick={ this.toggle.bind(this) }><b>{this.state.order}</b></button></ul>
-            <ol reversed={this.state.order==='Descend'? true: false}>
-                {this.state.order==='Descend'? moves.reverse(): moves}
+             <ul><div style={this.props.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
+            <ul><button onClick={ this.toggle.bind(this) }><b>{this.props.order}</b></button></ul>
+            <ol reversed={this.props.order==='Descend'? true: false}>
+                {this.props.order==='Descend'? moves.reverse(): moves}
             </ol>
           </div>
         </div>
@@ -383,6 +386,36 @@ class Game extends React.Component {
   }
 }
 
+// Add this function:
+function mapStateToProps(state) {
+  return {
+    history: state.history, // initiate state of squares of the board and keep all the steps' states of all squares.
+    xIsNext: state.xIsNext,
+    stepNumber: state.stepNumber,
+    rows: state.rows, // also is the number of columns.
+    fixed: state.fixed, // after rows is changed in input box, it is true. No more change further.
+    locations: state.location,
+    bold: state.bold,
+    winner_stepNumber: state.winner_stepNumber,
+    winner: state.winner,
+    order: state.order,
+    match: state.match , // hold the square indices(linear in array) when win the game.
+    lines: state.lines,
+    win_rule: state.win_rule,
+  };
+}
+
+// in this object, keys become prop names,
+// and values should be action creator functions.
+// They get bound to `dispatch`. 
+const mapDispatchToProps = {
+  increment,
+  decrement,
+  reset,
+  click_grid
+};
+
 
 // Must export!
-export default Game;
+//export default Game;
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

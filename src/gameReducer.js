@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT, RESET } from './actions';
+import { DECREMENT, INCREMENT, RESET, CLICK_GRID } from './actions';
 
 let rows = 15; // 8 * 8 button matrix
 let win_rule = 5; // 5 adjacent buttons with same char.
@@ -46,7 +46,7 @@ function generate_win_lines(rows) {
     return lines;
 };
 
-const initialStateCount = {
+const initialState = {
   history: [{
     squares: Array(rows ** 2).fill(null),
   }], // initiate state of squares of the board and keep all the steps' states of all squares.
@@ -67,7 +67,7 @@ const initialStateCount = {
   win_rule: win_rule,
 };
 
-export default function reducer(state = initialStateCount, action) {
+export default function reducer(state = initialState, action) {
   console.log('reducer', state, action);
   switch(action.type) {
     case INCREMENT:
@@ -79,10 +79,24 @@ export default function reducer(state = initialStateCount, action) {
         count: state.count - 1
       };
     case RESET:
-      return {
-        count: 0
-      };
+      return initialState;
+    case CLICK_GRID:
+      return change_state(state);
     default:
       return state;
   }
+};
+
+function change_state(state){
+  var tmp_state = {
+      ...state
+    };
+    // TODO...
+    // change state after adding x
+    // change tmp_state here
+
+    // TODO...
+    // change state after adding o
+    // change tmp_state here
+  return tmp_state;
 }
