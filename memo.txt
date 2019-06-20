@@ -1,0 +1,18 @@
+If something wrong with `npm install`:
+rm -rf node_modules
+npm install -g npm@latest
+npm i core-util-is
+
+If something like c++ wrong. with libc++...:
+env C=clang CXX=clang++ npm install
+
+If something like 'Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
+
+Check the render method of `Provider`.' happens,
+A solution suggested by Victor Nunes is to:
+
+Delete the package-lock.json file and the node_modules folder
+Remove all content of "dependencies" on package.json
+Run npm install --save react react-dom react-redux react-scripts redux
+npm i browserslist@4.6.3
+
