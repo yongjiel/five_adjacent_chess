@@ -12,14 +12,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Game from './Game';
-//import thunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducers from "./rootReducer";
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-//const store = createStore(rootReducers, applyMiddleware(thunk));
-const store = createStore(rootReducers)
+const store = createStore(rootReducers, applyMiddleware(thunk));
+//const store = createStore(rootReducers)
 // ========================================
 
 const App = () => (
