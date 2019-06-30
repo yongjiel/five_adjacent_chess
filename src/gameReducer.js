@@ -1,4 +1,4 @@
-import { RESET, CLICK_GRID, CLICK_STEP } from './actions';
+import { RESET, CLICK_GRID, CLICK_STEP, CLICK_TOGGLE } from './actions';
 
 let rows = 15; // 8 * 8 button matrix
 let win_rule = 5; // 5 adjacent buttons with same char.
@@ -65,6 +65,9 @@ const initialState = {
   match: [], // hold the square indices(linear in array) when win the game.
   lines: lines,
   win_rule: win_rule,
+  status: null,
+  win_color: null,
+  bold2: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -75,35 +78,34 @@ export default function reducer(state = initialState, action) {
     case CLICK_GRID:
       return change_state_grid(state, action.i);
     case CLICK_STEP:
-      return change_state_step(state);
+      return change_state_step(state, action.step);
+    case CLICK_TOGGLE:
+      return toggle_order(state);
     default:
       return state;
   }
 };
 
-function change_state_step(state){
-  var tmp_state = {
-      ...state
-    };
-    // TODO...
-    // change state after adding x
-    // change tmp_state here
+function toggle_order(state){
+    var tmp_state = {...state};
+    if (tmp_state.order === 'Ascend'){
+        tmp_state.order = 'Descend'
+    }else{
+        tmp_state.order = 'Ascend'
+    }
+    return tmp_state;
+  }
 
-    // TODO...
-    // change state after adding o
-    // change tmp_state here
+function change_state_step(state, step){
+  var tmp_state = {...state};
+  tmp_state.bold =  step;
+  tmp_state.stepNumber = step;
+  tmp_state.xIsNext = (step % 2) === 0;
   return tmp_state;
 }
 
 function change_state_grid(state, i){
   var new_state = handleClick(state, i);
-    // TODO...
-    // change state after adding x
-    // change tmp_state here
-
-    // TODO...
-    // change state after adding o
-    // change tmp_state here
   return new_state;
 }
 
@@ -139,6 +141,19 @@ function handleClick(state, i){
     tmp_state["fixed"] = true;
     return tmp_state
   }
+
+function change_game_info(tmp_state){
+  if (tmp_state.winner_stepNumber > -1) {
+      tmp_state.status = 'Winner: ' + tmp_state.winner ;
+      tmp_state.win_color = "red";
+      tmp_state.bold2 = 'bold';
+    
+    } else {
+      tmp_state.status = 'Next player: ' + (tmp_state.xIsNext ? 'X' : 'O');
+      tmp_state.win_color = 'black';
+    }
+    return tmp_state;
+}
 
 function calculateWinner(squares, state) {
     /* This game requires the three squares in a line, such as horizontal, 
@@ -270,3 +285,43 @@ function  look_for_row_column_in_board(r, c, squares, state){
     }
     return null
   }
+
+function focusInCurrentTarget(relatedTarget, currentTarget){
+    if (relatedTarget === null) return false;
+    
+    var node = relatedTarget.parentNode;
+          
+    while (node !== null) {
+      if (node === currentTarget) return true;
+      node = node.parentNode;
+    }
+
+    return false;
+  }
+
+function disableInput(e, tmp_state){
+    if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
+      tmp_state["fixed"] =  true;
+    }
+    return tmp_state;
+  }
+
+function updateInputValue(evt, tmp_state){
+    var value = evt.target.value;
+    if( value && ! value.toString().match(/^\d+$/)){
+      alert("Value must be integer!!!");
+      return;
+    }
+    tmp_state["rows"] =  value;
+    return tmp_state;
+  }
+
+function toggle(tmp_state){
+    if (tmp_state.order === 'Ascend'){
+        tmp_state.order = 'Descend'
+    }else{
+        tmp_state.order = 'Ascend'
+    }
+    return tmp_state;
+  }
+
