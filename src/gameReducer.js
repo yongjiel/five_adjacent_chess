@@ -110,6 +110,11 @@ function change_state_grid(state, i){
 }
 
 function handleClick(state, i){
+    // Cannot keep clicking if back to some old steps in list of steps.
+    if (state.stepNumber != state.history.length - 1){
+      alert("Backing to some old step. Not allowed to click on the board!");
+      return state;
+    }
     var tmp_state = {...state};
     const history = state.history.slice(0, state.stepNumber + 1);
     const current = history[history.length - 1];
