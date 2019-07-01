@@ -1,11 +1,25 @@
-
 import React from 'react';
+import { connect } from 'react-redux';
 import './index.css';
 import Step from './Step.js';
+import { click_step, click_toggle } from './actions';
+
 
 class StepList extends React.Component {
-  renderStep(i, history_step, stepNumber, 
-      current_location, order, bold1) {
+
+  click_step = (i) => {
+      this.props.click_step(i);
+  }
+
+  click_toggle = () => {
+    this.props.click_toggle();
+  }
+
+  renderStep( i, 
+              history_step, 
+              stepNumber, 
+              current_location, 
+              order) {
     return (
       <Step 
           history_step={history_step}
@@ -13,37 +27,40 @@ class StepList extends React.Component {
           current_location = {current_location}
           current_step = {stepNumber}
           i = {i}
-          bold1 = {bold1}
-          onClick={ () => this.props.onClick(i) } key={"Step#"+i}/>
+          onClick={ () => this.click_step(i) } key={"Step#"+i}/>
     );
   }
 
 
   render() {
     // this part is crazy good for loop and close div tag
-    const history = this.props.props.history;
+    const history = this.props.history;
     const row_c =  history.length;
     var steps = [];
-    var locations = this.props.props.locations;
+    var locations = this.props.locations;
     for (var j = 0; j < row_c; j++){
         steps.push(<li key={j} className="step_list"> 
           {this.renderStep(
             j, 
             history[j], 
-            this.props.props.stepNumber, 
+            this.props.stepNumber, 
             locations[j], 
-            this.props.props.order, 
-            this.props.props.bold1)}
+            this.props.order) }
         </li>);
        
     }
     var reverse = false;
-    if (this.props.props.order==='Descend'){
+    if (this.props.order==='Descend'){
       steps = steps.reverse();
       reverse = true;
     }
     return (
       <div>
+        <ul>
+          <button onClick={ () => this.click_toggle() }>
+            <b>{this.props.order}</b>
+          </button>
+        </ul>
         <ol reversed={reverse}>
                   {steps}
         </ol>
@@ -53,5 +70,22 @@ class StepList extends React.Component {
 }
 
 
-// Must export!
-export default StepList;
+function mapStateToProps(store) {
+  return {
+    history: store.reducer.history, // initiate store.reducer of squares of the board and keep all the steps' states of all squares.
+    stepNumber: store.reducer.stepNumber, // current step number.
+    locations: store.reducer.locations,
+    order: store.reducer.order,
+  };
+}
+
+// in this object, keys become prop names,
+// and values should be action creator functions.
+// They get bound to `dispatch`. 
+const mapDispatchToProps = {
+  click_step,
+  click_toggle
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(StepList);

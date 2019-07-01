@@ -53,12 +53,12 @@ const initialState = {
   xIsNext: true,
   stepNumber: 0,
   rows: rows, // also is the number of columns.
-  fixed: false, // after rows is changed in input box, it is true. No more change further.
+  fixed: false, // after rows is changed in left-up input box, it is true. No more change further.
   locations: [{
     row: 0,
     col: 0,
   }],
-  bold: -1,
+  bold: -1, // record step number with bold.
   winner_stepNumber: -1,
   winner: null,
   order: "Ascend",
@@ -124,6 +124,7 @@ function handleClick(state, i){
     if (calculateWinner(squares, state) || squares[i]) {
       return tmp_state;
     }
+    // Add X or O, then update state.
     squares[i] = state.xIsNext ? 'X' : 'O';
     let match_in_line = calculateWinner(squares, state);
     if (match_in_line) {
@@ -144,18 +145,19 @@ function handleClick(state, i){
       }]);
     tmp_state["bold"] = history.length;
     tmp_state["fixed"] = true;
+    tmp_state = change_game_info(tmp_state);
     return tmp_state
   }
 
 function change_game_info(tmp_state){
   if (tmp_state.winner_stepNumber > -1) {
-      tmp_state.status = 'Winner: ' + tmp_state.winner ;
-      tmp_state.win_color = "red";
-      tmp_state.bold2 = 'bold';
+      tmp_state["status"] = 'Winner: ' + tmp_state.winner ;
+      tmp_state["win_color"] = "red";
+      tmp_state["bold2"] = 'bold';
     
     } else {
-      tmp_state.status = 'Next player: ' + (tmp_state.xIsNext ? 'X' : 'O');
-      tmp_state.win_color = 'black';
+      tmp_state["status"] = 'Next player: ' + (tmp_state.xIsNext ? 'X' : 'O');
+      tmp_state["win_color"] = 'black';
     }
     return tmp_state;
 }

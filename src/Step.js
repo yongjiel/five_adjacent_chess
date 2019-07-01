@@ -20,10 +20,11 @@ class Square extends React.Component {
 */
 function Step(props) {
   var blue_color = props.i===props.current_step? "blue": "purple"
+  var fw = props.i===props.current_step? "bold": "normal"
   return (
     <button 
             style={ {
-                    fontWeight: props.bold1,
+                    fontWeight: fw,
                     color: blue_color,
                   } } 
             onClick={ props.onClick}

@@ -1,15 +1,22 @@
-
 import React from 'react';
 import './index.css';
 import Square from './Square.js';
+import { click_grid } from './actions';
+import { connect } from 'react-redux';
+
 
 class Board extends React.Component {
+  
+  click_grid = (i) => {
+      this.props.click_grid(i);
+  }
+
   renderSquare(i, match) {
     return (
       <Square 
           match={match}
-          value={ this.props.squares[i] } 
-          onClick={ () => this.props.onClick(i) } key={"Square#"+i}/>
+          value={ this.props.history[this.props.stepNumber].squares[i] } 
+          onClick={ () => this.click_grid(i) } key={"Square#"+i}/>
     );
   }
 
@@ -40,5 +47,20 @@ class Board extends React.Component {
 }
 
 
-// Must export!
-export default Board;
+function mapStateToProps(store) {
+  return {
+    history: store.reducer.history, // initiate store.reducer of squares of the board and keep all the steps' states of all squares.
+    stepNumber: store.reducer.stepNumber, // current step number.
+    rows: store.reducer.rows, // also is the number of columns.
+    match: store.reducer.match , // hold the square indices(linear in array) when win the game.
+  };
+}
+
+// in this object, keys become prop names,
+// and values should be action creator functions.
+// They get bound to `dispatch`. 
+const mapDispatchToProps = {
+  click_grid,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

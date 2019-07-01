@@ -12,18 +12,6 @@ class Game extends React.Component {
     this.props.reset();
   }
 
-  click_grid = (i) => {
-      this.props.click_grid(i);
-  }
-
-  click_step = (i) => {
-      this.props.click_step(i);
-  }
-
-  click_toggle = () => {
-    this.props.click_toggle();
-  }
-
   restart(){
     this.props.reset()
   }
@@ -76,27 +64,17 @@ class Game extends React.Component {
         </div>  <br/> 
         <div className="game">
           <div className="game-board" key={"Board1"}>
-            <Board
-              match={this.props.match}
-              rows={this.props.rows} 
-              squares={this.props.history[this.props.stepNumber].squares}
-              onClick={(i) => this.click_grid(i)}
-            />
-
+            <Board/>
           </div>
           <div className="game-info">
              <div>
-             <ul><button onClick={()=>this.restart()}> Restart the Game</button></ul>
+               <ul><button onClick={()=>this.restart()}> Restart the Game</button></ul>
              </div>
-             <div>
-             <ul><div style={{color: this.props.win_color, fontWeight: this.props.bold2}}>{this.props.status}</div></ul>
-             <ul><button onClick={ () => this.click_toggle() }><b>{this.props.order}</b></button></ul>
+             <div style={ {color: this.props.win_color, fontWeight: this.props.bold2} }>
+               {this.props.status}
              </div>
              <div className="step-list">
-               <StepList
-                   props = {this.props}
-                   onClick={ (i) => this.click_step(i)}
-               />
+               <StepList/>
             </div>
           </div>
         </div>
@@ -110,19 +88,9 @@ class Game extends React.Component {
 // Need to point out which reducer to use.
 function mapStateToProps(store) {
   return {
-    history: store.reducer.history, // initiate store.reducer of squares of the board and keep all the steps' states of all squares.
-    xIsNext: store.reducer.xIsNext,
-    stepNumber: store.reducer.stepNumber, // current step number.
     rows: store.reducer.rows, // also is the number of columns.
     fixed: store.reducer.fixed, // after rows is changed in input box, it is true. No more change further.
-    locations: store.reducer.locations,
-    bold: store.reducer.bold,
-    winner_stepNumber: store.reducer.winner_stepNumber,
-    winner: store.reducer.winner,
-    order: store.reducer.order,
     match: store.reducer.match , // hold the square indices(linear in array) when win the game.
-    lines: store.reducer.lines,
-    win_rule: store.reducer.win_rule,
     status: store.reducer.status,
     win_color: store.reducer.win_color,
     bold2: store.reducer.bold2,
@@ -134,9 +102,6 @@ function mapStateToProps(store) {
 // They get bound to `dispatch`. 
 const mapDispatchToProps = {
   reset,
-  click_grid,
-  click_step,
-  click_toggle
 };
 
 
