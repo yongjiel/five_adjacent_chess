@@ -1,50 +1,10 @@
-import { RESET, CLICK_GRID, CLICK_STEP, CLICK_TOGGLE } from './actions';
+import { RESET, CLICK_GRID, CLICK_STEP, CLICK_TOGGLE, INPUT_SIZE } from './actions';
 
 let rows = 15; // 8 * 8 button matrix
 let win_rule = 5; // 5 adjacent buttons with same char.
 if (win_rule > rows){
   alert("Error: the board must bigger than " + win_rule +  " X " + win_rule + "!!!");
-} 
-// TO-DO:
-let lines = generate_win_lines(rows);
-
-function generate_win_lines(rows) {
-    var lines = [];
-    // row first, column second
-    for (var i=0; i < rows; i++){
-      var tmp = [];
-      for(var j=0; j < rows; j++){
-        tmp.push(j + i * rows);
-      }
-      lines.push(tmp);
-    }
-    // cloumn first, row second
-    for (j=0; j < rows; j++){
-      tmp = [];
-      for(i=0; i < rows; i++){
-        tmp.push(j + i * rows);
-      }
-      lines.push(tmp);
-    }
-      
-    //diagonal 
-    j = 0; //column, start with first column with 0
-    tmp = [];
-    for(i=0; i < rows; i++){
-        tmp.push(j + i * rows);
-        j = j + 1;
-      }
-    lines.push(tmp);
-
-    j = rows - 1; //column, start last column with rows-1
-    tmp = [];
-    for(i=0; i < rows; i++){
-        tmp.push(j + i * rows);
-        j = j - 1;
-      }
-    lines.push(tmp);
-    return lines;
-};
+}
 
 const initialState = {
   history: [{
@@ -53,17 +13,16 @@ const initialState = {
   xIsNext: true,
   stepNumber: 0,
   rows: rows, // also is the number of columns.
+  max_rows: 20, //max limit of rows.
   fixed: false, // after rows is changed in left-up input box, it is true. No more change further.
   locations: [{
     row: 0,
     col: 0,
   }],
-  bold: -1, // record step number with bold.
   winner_stepNumber: -1,
   winner: null,
   order: "Ascend",
   match: [], // hold the square indices(linear in array) when win the game.
-  lines: lines,
   win_rule: win_rule,
   status: null,
   win_color: null,
@@ -81,10 +40,27 @@ export default function reducer(state = initialState, action) {
       return change_state_step(state, action.step);
     case CLICK_TOGGLE:
       return toggle_order(state);
+    case INPUT_SIZE:
+      return input_size(state, action.size);
     default:
       return state;
   }
 };
+
+
+function input_size(state, size){
+  var tmp_state = {...state};
+  if (isNaN(size)){
+    alert("Size is not an integer!");
+  }
+  else if (size > state.max_rows){
+    alert("Size over " + state.max_rows);
+  }else{
+    tmp_state['rows'] = size;
+  }
+  return tmp_state;
+}
+
 
 function toggle_order(state){
     var tmp_state = {...state};
@@ -98,7 +74,6 @@ function toggle_order(state){
 
 function change_state_step(state, step){
   var tmp_state = {...state};
-  tmp_state.bold =  step;
   tmp_state.stepNumber = step;
   tmp_state.xIsNext = (step % 2) === 0;
   return tmp_state;
@@ -116,6 +91,8 @@ function handleClick(state, i){
       return state;
     }
     var tmp_state = {...state};
+    // Once click on the board the size input of the board fixed.
+    tmp_state['fixed'] = true;
     const history = state.history.slice(0, state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares =  current.squares.slice();
@@ -143,7 +120,6 @@ function handleClick(state, i){
         row: row,
         col: col
       }]);
-    tmp_state["bold"] = history.length;
     tmp_state["fixed"] = true;
     tmp_state = change_game_info(tmp_state);
     return tmp_state
@@ -291,36 +267,6 @@ function  look_for_row_column_in_board(r, c, squares, state){
       return [r, c]; // row and colum start from 0
     }
     return null
-  }
-
-function focusInCurrentTarget(relatedTarget, currentTarget){
-    if (relatedTarget === null) return false;
-    
-    var node = relatedTarget.parentNode;
-          
-    while (node !== null) {
-      if (node === currentTarget) return true;
-      node = node.parentNode;
-    }
-
-    return false;
-  }
-
-function disableInput(e, tmp_state){
-    if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
-      tmp_state["fixed"] =  true;
-    }
-    return tmp_state;
-  }
-
-function updateInputValue(evt, tmp_state){
-    var value = evt.target.value;
-    if( value && ! value.toString().match(/^\d+$/)){
-      alert("Value must be integer!!!");
-      return;
-    }
-    tmp_state["rows"] =  value;
-    return tmp_state;
   }
 
 function toggle(tmp_state){

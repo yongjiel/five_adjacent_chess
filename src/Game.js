@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
 import Board from './Board.js';
+import BoardSize from './BoardSize.js';
 import StepList from './StepList.js';
-import Rows from './square_rows.js';
 import { connect } from 'react-redux';
 import { reset, click_grid, click_step, click_toggle } from './actions';
 
@@ -16,37 +16,6 @@ class Game extends React.Component {
     this.props.reset()
   }
 
-  focusInCurrentTarget(relatedTarget, currentTarget){
-    if (relatedTarget === null) return false;
-    
-    var node = relatedTarget.parentNode;
-          
-    while (node !== null) {
-      if (node === currentTarget) return true;
-      node = node.parentNode;
-    }
-
-    return false;
-  }
-
-  disableInput(e){
-    if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
-      this.setState({
-        fixed: true,
-      })
-    }
-  }
-
-  updateInputValue(evt){
-    var value = evt.target.value;
-    if( value && ! value.toString().match(/^\d+$/)){
-      alert("Value must be integer!!!");
-      return;
-    }
-    this.setState({
-      rows: value,
-    })
-  }
 
   render() {
     // When using bind in updateInputValue function, this can be used inside updateInputValue()
@@ -56,12 +25,7 @@ class Game extends React.Component {
     // function with arg i.
     return (
       <div  key={"Game1"}>
-        <div className="game-input" key={"rows"}> 
-          <Rows rows={this.props.rows} 
-                onChange={ this.updateInputValue.bind(this) }
-                onBlur={this.disableInput.bind(this)}
-                fixed={this.props.fixed}/> 
-        </div>  <br/> 
+        <BoardSize/> <br/> 
         <div className="game">
           <div className="game-board" key={"Board1"}>
             <Board/>
