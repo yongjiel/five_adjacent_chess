@@ -8,7 +8,7 @@ function Rows(props) {
     <div className="rows" key={"rows1"}>
       <input  placeholder={props.rows}
          id={"rows"}
-         //value={ props.rows }
+         value={ props.rows }
         onChange={ (evt) => props.onChange(evt.target.value)}
         size="10"
         disabled={props.fixed? true : false}

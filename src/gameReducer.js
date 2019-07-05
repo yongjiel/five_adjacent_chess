@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action) {
   console.log('reducer', state, action);
   switch(action.type) {
     case RESET:
-      return initialState;
+      return {...initialState, rows: rows};
     case CLICK_GRID:
       return change_state_grid(state, action.i);
     case CLICK_STEP:
