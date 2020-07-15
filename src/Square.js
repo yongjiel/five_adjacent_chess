@@ -19,12 +19,10 @@ class Square extends React.Component {
 }
 */
 function Square(props) {
-  var blue_color = props.match? "blue": "white"
   return (
-    <button className="square" onClick={props.onClick} 
-       style={{backgroundColor: blue_color}}
-    >
-      {props.value}
+    <button className="square" + {{props.is_blue_color? 'blue': ''}}
+     onClick={props.onClick}>
+        {props.value}
     </button>
   );
 }

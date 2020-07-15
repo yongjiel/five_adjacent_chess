@@ -11,10 +11,10 @@ class Board extends React.Component {
       this.props.click_grid(i);
   }
 
-  renderSquare(i, match) {
+  renderSquare(i, is_bule_color) {
     return (
       <Square 
-          match={match}
+          is_bule_color={is_bule_color}
           value={ this.props.history[this.props.stepNumber].squares[i] } 
           onClick={ () => this.click_grid(i) } key={"Square#"+i}/>
     );
@@ -29,11 +29,7 @@ class Board extends React.Component {
       rows.push(<div className="board-row" key={"row#"+i}/>);
       for (var j = 0; j < row_c; j++){
         let n = i * row_c + j;
-        if (match.indexOf(n) > -1){
-          rows.push(this.renderSquare(n, true));
-        }else{
-          rows.push(this.renderSquare(n, false));
-        }
+        rows.push(this.renderSquare(n, match.indexOf(n) > -1));
       }
       
     }

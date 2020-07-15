@@ -92,45 +92,45 @@ function handleClick(state, i){
     }
     var tmp_state = {...state};
     // Once click on the board the size input of the board fixed.
-    tmp_state['fixed'] = true;
+    tmp_state['fixed'] = tmp_state['fixed'] || true;
     const history = state.history.slice(0, state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares =  current.squares.slice();
     const locations = state.locations;
     // Do nothing if someone has already won the game or if a square is already filled
-    if (calculateWinner(squares, state) || squares[i]) {
+    if (!!getWinner(squares, state) || squares[i]) {
       return tmp_state;
     }
     // Add X or O, then update state.
     squares[i] = state.xIsNext ? 'X' : 'O';
-    let match_in_line = calculateWinner(squares, state);
-    if (match_in_line) {
+    let winner_array = getWinner(squares, state);
+    if (!!winner_array) {
       tmp_state["winner_stepNumber"] = history.length+1;
       tmp_state["winner"] = squares[i];
-      tmp_state["match"] = match_in_line;
+      tmp_state["match"] = winner_array;
     }
-    const row = Math.floor(i / state.rows) + 1;
-    const col = i - (row -1) * state.rows + 1;
+    let loc = find_row_col_by_index(i)
     tmp_state["history"] = history.concat([{
         squares: squares,
       }]);
     tmp_state["stepNumber"] = history.length;
     tmp_state["xIsNext"] = !state.xIsNext;
-    tmp_state["locations"] =  locations.concat([{
-        row: row,
-        col: col
-      }]);
-    tmp_state["fixed"] = true;
+    tmp_state["locations"] =  locations.concat([loc]);
     tmp_state = change_game_info(tmp_state);
     return tmp_state
-  }
+}
+
+function find_row_col_by_index(i) {
+    const row = Math.floor(i / state.rows) + 1;
+    const col = i - (row -1) * state.rows + 1;
+    return {row: row, col: col}
+}
 
 function change_game_info(tmp_state){
   if (tmp_state.winner_stepNumber > -1) {
       tmp_state["status"] = 'Winner: ' + tmp_state.winner ;
       tmp_state["win_color"] = "red";
       tmp_state["bold2"] = 'bold';
-    
     } else {
       tmp_state["status"] = 'Next player: ' + (tmp_state.xIsNext ? 'X' : 'O');
       tmp_state["win_color"] = 'black';
@@ -138,23 +138,23 @@ function change_game_info(tmp_state){
     return tmp_state;
 }
 
-function calculateWinner(squares, state) {
+function getWinner(squares, state) {
     /* This game requires the three squares in a line, such as horizontal, 
         vertical or diagnol with the same Chars. It wins the game.
     */
-    var adjacent_array;
+    var winner_array;
     for(var i=0; i < state.rows; i++){
       for(var j=0; j < state.rows; j++){
-        adjacent_array = look_for_adjacents(i, j, squares, state);
-        if(adjacent_array){
-          return adjacent_array;
+        winner_array = look_for_winner(i, j, squares, state);
+        if(!!winner_array){
+          return winner_array;
         }
       }
     }
-    return adjacent_array;
-  }
+    return winner_array;
+}
 
-function look_for_adjacents(i, j, squares, state){
+function look_for_winner(i, j, squares, state){
     const win_rule = state.win_rule;
     var location = look_for_row_column_in_board(i, j, squares, state);
     var row = location? location[0] : -1;

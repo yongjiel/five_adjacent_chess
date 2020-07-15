@@ -39,14 +39,16 @@ class StepList extends React.Component {
     var steps = [];
     var locations = this.props.locations;
     for (var j = 0; j < row_c; j++){
-        steps.push(<li key={j} className="step_list"> 
+        steps.push(
+          <li key={j} className="step_list"> 
           {this.renderStep(
             j, 
             history[j], 
             this.props.stepNumber, 
             locations[j], 
             this.props.order) }
-        </li>);
+          </li>
+        );
        
     }
     var reverse = false;
@@ -62,7 +64,7 @@ class StepList extends React.Component {
           </button>
         </ul>
         <ol reversed={reverse}>
-                  {steps}
+          {steps}
         </ol>
       </div>
     );
