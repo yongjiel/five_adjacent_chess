@@ -6,37 +6,37 @@ import { connect } from 'react-redux';
 
 
 class Board extends React.Component {
-  
+
   click_grid = (i) => {
-      this.props.click_grid(i);
+    this.props.click_grid(i);
   }
 
   renderSquare(i, is_bule_color) {
     return (
-      <Square 
-          is_bule_color={is_bule_color}
-          value={ this.props.history[this.props.stepNumber].squares[i] } 
-          onClick={ () => this.click_grid(i) } key={"Square#"+i}/>
+      <Square
+        is_bule_color={is_bule_color}
+        value={this.props.history[this.props.stepNumber].squares[i]}
+        onClick={() => this.click_grid(i)} key={"Square#" + i} />
     );
   }
 
   render() {
     // this part is crazy good for loop and close div tag
     const match = this.props.match;
-    const row_c =  this.props.rows;
+    const row_c = this.props.rows;
     var rows = [];
     for (var i = 0; i < row_c; i++) {
-      rows.push(<div className="board-row" key={"row#"+i}/>);
-      for (var j = 0; j < row_c; j++){
+      rows.push(<div className="board-row" key={"row#" + i} />);
+      for (var j = 0; j < row_c; j++) {
         let n = i * row_c + j;
         rows.push(this.renderSquare(n, match.indexOf(n) > -1));
       }
-      
+
     }
 
     return (
       <div >
-         { rows }
+        {rows}
       </div>
     );
   }
@@ -48,7 +48,7 @@ function mapStateToProps(store) {
     history: store.reducer.history, // initiate store.reducer of squares of the board and keep all the steps' states of all squares.
     stepNumber: store.reducer.stepNumber, // current step number.
     rows: store.reducer.rows, // also is the number of columns.
-    match: store.reducer.match , // hold the square indices(linear in array) when win the game.
+    match: store.reducer.match, // hold the square indices(linear in array) when win the game.
   };
 }
 

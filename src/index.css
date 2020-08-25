@@ -32,8 +32,8 @@ ol, ul {
   width: 34px;
 }
 
-.blue {
-  backgroundColor: blue;
+.square.blue {
+  background: blue;
 }
 
 .square:focus {
