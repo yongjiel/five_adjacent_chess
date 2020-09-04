@@ -6,6 +6,7 @@ Instead with adjacent 5 same chars
 will win the game.
 This is also named in Chinese chest 'Five finger chest'.
 */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
