@@ -18,6 +18,7 @@ import rootReducers from "./rootReducer";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import BlinkyRender from "./BlinkyRender";
+import ThreeCounts from "./ThreeCounts";
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 //const store = createStore(rootReducers)
@@ -28,6 +29,7 @@ const App = () => (
     <Game rows="15" />
     <Footer />
     <BlinkyRender />
+    <ThreeCounts />
   </Provider>
 );
 /*
