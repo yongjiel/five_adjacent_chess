@@ -21,6 +21,7 @@ import BlinkyRender from "./BlinkyRender";
 import ThreeCounts from "./ThreeCounts";
 import FetchDemo from "./fetchDemo";
 import FetchDemoFlaskSocketIO from "./fetchDemoFlaskSocketIO";
+import RoomApp from "./room";
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 //const store = createStore(rootReducers)
@@ -34,6 +35,7 @@ const App = () => (
     <ThreeCounts />
     <FetchDemo subreddit="reactjs" />
     <FetchDemoFlaskSocketIO subreddit="api" />
+    <RoomApp />
   </Provider>
 );
 /*
