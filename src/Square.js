@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './index.css';
+import React, { useState, useEffect } from "react";
+import "./index.css";
 
 /*
 class Square extends React.Component {
@@ -37,13 +37,24 @@ function Square(props) {
     setClicked(true);
   }
 
+  function reset() {
+    setClicked(false);
+  }
+
+  useEffect(() => {
+    if (props.stepNumber == 0) {
+      reset();
+    }
+  });
+
   return (
-    <button className={"square " + (props.is_bule_color ? 'blue' : '')}
+    <button
+      className={"square " + (props.is_bule_color ? "blue" : "")}
       onClick={clicked ? undefined : doClick}
-    //  disabled={clicked}
+      //  disabled={clicked}
     >
       {props.value} {props.is_blue_color}
-    </button >
+    </button>
   );
 }
 

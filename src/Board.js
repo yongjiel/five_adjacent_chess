@@ -1,22 +1,23 @@
-import React from 'react';
-import './index.css';
-import Square from './Square.js';
-import { click_grid } from './actions';
-import { connect } from 'react-redux';
-
+import React from "react";
+import "./index.css";
+import Square from "./Square.js";
+import { click_grid } from "./actions";
+import { connect } from "react-redux";
 
 class Board extends React.Component {
-
   click_grid = (i) => {
     this.props.click_grid(i);
-  }
+  };
 
   renderSquare(i, is_bule_color) {
     return (
       <Square
+        stepNumber={this.props.stepNumber}
         is_bule_color={is_bule_color}
         value={this.props.history[this.props.stepNumber].squares[i]}
-        onClick={() => this.click_grid(i)} key={"Square#" + i} />
+        onClick={() => this.click_grid(i)}
+        key={"Square#" + i}
+      />
     );
   }
 
@@ -31,17 +32,11 @@ class Board extends React.Component {
         let n = i * row_c + j;
         rows.push(this.renderSquare(n, match.indexOf(n) > -1));
       }
-
     }
 
-    return (
-      <div >
-        {rows}
-      </div>
-    );
+    return <div>{rows}</div>;
   }
 }
-
 
 function mapStateToProps(store) {
   return {
@@ -54,7 +49,7 @@ function mapStateToProps(store) {
 
 // in this object, keys become prop names,
 // and values should be action creator functions.
-// They get bound to `dispatch`. 
+// They get bound to `dispatch`.
 const mapDispatchToProps = {
   click_grid,
 };
