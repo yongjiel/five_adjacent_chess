@@ -3,7 +3,8 @@ body {
   margin: 20px;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 30px;
 }
 
@@ -56,12 +57,36 @@ ol, ul {
   max-height: 20%;
 }
 
-.game-input{
+.game-input {
   /*background: gold;*/
 }
 
-.game-board{
+.game-board {
   float: left;
   max-width: 80%;
   max-height: 80%;
+}
+
+.header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+.header li {
+  float: left;
+}
+
+.header li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.header li a:hover {
+  background-color: #111111;
 }

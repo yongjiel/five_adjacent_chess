@@ -22,21 +22,75 @@ import ThreeCounts from "./ThreeCounts";
 import FetchDemo from "./fetchDemo";
 import FetchDemoFlaskSocketIO from "./fetchDemoFlaskSocketIO";
 import RoomApp from "./room";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 //const store = createStore(rootReducers)
 // ========================================
 
 const App = () => (
-  <Provider store={store}>
-    <Game rows="15" />
-    <Footer />
-    <BlinkyRender />
-    <ThreeCounts />
+  <Router>
+    <Provider store={store}>
+      <Route path="/" component={nav_bar} />
+      <Route path="/game" component={game} />
+      <Route path="/blinkyrender" component={blinkyrender} />
+
+      <Route path="/threecounts" component={threecounts} />
+      <Route path="/fetchdemo" component={fetchdemo} />
+      <Route path="/room" component={room} />
+    </Provider>
+  </Router>
+);
+
+const nav_bar = ({ match }) => (
+  <div className="header">
+    <ul>
+      <li>
+        <Link to={"/game"}>Game</Link>
+      </li>
+      <li>
+        <Link to={"/blinkyrender"}>BlinkyRender</Link>
+      </li>
+      <li>
+        <Link to={"/threecounts"}>ThreeCounts</Link>
+      </li>
+      <li>
+        <Link to={"/fetchdemo"}>FetchDemo</Link>
+      </li>
+      <li>
+        <Link to={"/room"}>Room</Link>
+      </li>
+    </ul>
+  </div>
+);
+
+const game = ({ match }) => (
+  <div>
+    <Game rows="15" /> <Footer />
+  </div>
+);
+
+const fetchdemo = ({ match }) => (
+  <div>
     <FetchDemo subreddit="reactjs" />
     <FetchDemoFlaskSocketIO subreddit="api" />
+  </div>
+);
+
+const blinkyrender = ({ match }) => (
+  <div>
+    <BlinkyRender />
+  </div>
+);
+const threecounts = ({ match }) => (
+  <div>
+    <ThreeCounts />
+  </div>
+);
+const room = ({ match }) => (
+  <div>
     <RoomApp />
-  </Provider>
+  </div>
 );
 /*
 ReactDOM.render(
