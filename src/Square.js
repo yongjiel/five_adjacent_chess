@@ -42,7 +42,7 @@ function Square(props) {
   }
 
   useEffect(() => {
-    if (props.stepNumber == 0) {
+    if (props.stepNumber === 0) {
       reset();
     }
   });

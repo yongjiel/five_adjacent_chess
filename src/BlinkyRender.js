@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 
 const BlinkyRender = () => {
   const [value, setValue] = useState(0);

@@ -32,7 +32,10 @@ const App = () => (
   <Router>
     <Provider store={store}>
       <Route path="/" component={nav_bar} />
-      <Route path="/game" component={game} />
+      <Route
+        path="/game/:id?"
+        render={({ match }) => <GameApp rows={match.params.id} />}
+      />
       <Route path="/blinkyrender" component={blinkyrender} />
 
       <Route path="/threecounts" component={threecounts} />
@@ -49,24 +52,24 @@ const nav_bar = ({ match }) => (
         <Link to={"/game"}>Game</Link>
       </li>
       <li>
-        <Link to={"/blinkyrender"}>BlinkyRender</Link>
+        <Link to={"/blinkyrender"}>BlinkyRender useLayoutEffect</Link>
       </li>
       <li>
-        <Link to={"/threecounts"}>ThreeCounts</Link>
+        <Link to={"/threecounts"}>ThreeCounts useEffect</Link>
       </li>
       <li>
         <Link to={"/fetchdemo"}>FetchDemo</Link>
       </li>
       <li>
-        <Link to={"/room"}>Room</Link>
+        <Link to={"/room"}>Room Context API</Link>
       </li>
     </ul>
   </div>
 );
 
-const game = ({ match }) => (
+const GameApp = ({ rows }) => (
   <div>
-    <Game rows="15" /> <Footer />
+    <Game rows_={rows || 15} /> <Footer />
   </div>
 );
 
