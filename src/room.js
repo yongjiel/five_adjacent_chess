@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import produce from "immer";
 
 // Plain empty context
 const RoomContext = React.createContext();
@@ -12,7 +13,12 @@ class RoomStore extends React.Component {
   };
 
   toggleLight = () => {
-    this.setState((state) => ({ isLit: !state.isLit }));
+    //this.setState((state) => ({ isLit: !state.isLit }));
+    this.setState(
+      produce((draft) => {
+        draft.isLit = !draft.isLit;
+      })
+    );
   };
 
   render() {

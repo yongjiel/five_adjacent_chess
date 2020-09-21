@@ -6,6 +6,8 @@ import {
   INPUT_SIZE,
 } from "./actions";
 
+import produce from "immer";
+
 let rows = 15; // 8 * 8 button matrix
 let win_rule = 5; // 5 adjacent buttons with same char.
 if (win_rule > rows) {
@@ -43,6 +45,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   console.log("reducer", state, action);
+  /*
   switch (action.type) {
     case RESET:
       return { ...initialState, rows: rows };
@@ -56,10 +59,56 @@ export default function reducer(state = initialState, action) {
       return input_size(state, action.size);
     default:
       return state;
-  }
+  }*/
+  /*
+  switch (action.type) {
+    case RESET:
+      return produce(state, (draft) => initialState);
+    case CLICK_GRID:
+      return produce(
+        state,
+        (draft) => (draft = change_state_grid(state, action.i))
+      );
+    case CLICK_STEP:
+      return produce(
+        state,
+        (draft) => (draft = change_state_step(state, action.step))
+      );
+
+    case CLICK_TOGGLE:
+      return produce(state, (draft) => (draft = toggle_order(state)));
+    case INPUT_SIZE:
+      return produce(
+        state,
+        (draft) => (draft = input_size(state, action.size))
+      );
+    default:
+      return produce(state, (draft) => {
+        draft = draft;
+      });
+  }*/
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case RESET:
+        return { ...initialState, rows: rows };
+      case CLICK_GRID:
+        return change_state_grid(draft, action.i);
+      case CLICK_STEP:
+        return change_state_step(draft, action.step);
+      case CLICK_TOGGLE:
+        return toggle_order(draft);
+      case INPUT_SIZE:
+        return input_size(draft, action.size);
+      default:
+        return draft;
+    }
+  });
 }
 
 function input_size(state, size) {
+  if (state["rows"] === size) {
+    return state;
+  }
   var tmp_state = { ...state };
   if (isNaN(size)) {
     alert("Size is not an integer!");
