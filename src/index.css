@@ -81,7 +81,7 @@ ul {
 
 .header li a {
   display: block;
-  color: white;
+  color: rgb(245, 238, 238);
   text-align: center;
   padding: 16px;
   text-decoration: none;
@@ -89,4 +89,31 @@ ul {
 
 .header li a:hover {
   background-color: #111111;
+}
+
+html,
+body,
+#root,
+.app,
+.room {
+  height: 100%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.room {
+  text-align: center;
+  padding-top: 30px;
+  font-size: 30px;
+}
+.room.lit {
+  background: #fff;
+  color: #222;
+}
+.room.dark {
+  background: #222;
+  color: white;
 }

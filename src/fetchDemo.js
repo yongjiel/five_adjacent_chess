@@ -16,6 +16,14 @@ class FetchDemo extends React.Component {
   }
 
   render() {
+    if (this.state.posts.length === 0) {
+      return (
+        <div>
+          <h1>{`/r/${this.props.subreddit}`}</h1>
+          <p>No posts yet</p>
+        </div>
+      );
+    }
     return (
       <div>
         <h1>{`/r/${this.props.subreddit}`}</h1>

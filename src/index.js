@@ -7,7 +7,7 @@ will win the game.
 This is also named in Chinese chest 'Five finger chest'.
 */
 
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Game from "./Game";
@@ -22,30 +22,87 @@ import ThreeCounts from "./ThreeCounts";
 import FetchDemo from "./fetchDemo";
 import FetchDemoFlaskSocketIO from "./fetchDemoFlaskSocketIO";
 import RoomApp from "./room";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 //const store = createStore(rootReducers)
 // ========================================
 
-const App = () => (
-  <Router>
-    <Provider store={store}>
-      <Route path="/" component={nav_bar} />
-      <Route
-        path="/game/:id?"
-        render={({ match }) => <GameApp rows={match.params.id} />}
-      />
-      <Route path="/blinkyrender" component={blinkyrender} />
+function App() {
+  const [show_or_hide, setHide] = useState(true);
+  // make wrapper function to give child
+  const onLoginClick = useCallback(
+    (val) => {
+      setHide(val);
+    },
+    [setHide]
+  );
 
+  return (
+    <Router>
+      <div>---- Current url in app: {window.location.href} ---</div>
+      <Switch>
+        <Redirect from="/home" to="/" />
+        <Redirect from="/index" to="/" />
+      </Switch>
+      {show_or_hide && <Route path="/" component={NavBar} />}
+      <Route path="/blinkyrender" component={blinkyrender} />
       <Route path="/threecounts" component={threecounts} />
       <Route path="/fetchdemo" component={fetchdemo} />
       <Route path="/room" component={room} />
-    </Provider>
-  </Router>
-);
+      <Provider store={store}>
+        <Route exact path="/game/:id?" component={GameApp} />
+      </Provider>
 
-const nav_bar = ({ match }) => (
+      <Route
+        path="/login"
+        render={(props) => (
+          <Login
+            {...props}
+            onLoginClick={onLoginClick}
+            show_or_hide={show_or_hide}
+          />
+        )}
+      />
+    </Router>
+  );
+}
+//<Provider store={store}>
+//      <Route exact path="/game/:id?" render ({match}) => <GameApp rows={match.params.id} />} />
+//    </Provider>
+function Login({ onLoginClick, show_or_hide }) {
+  const [loggedin, setLogin] = useState(false);
+
+  useEffect(() => {
+    onLoginClick(false);
+    setLogin(false);
+  }, []);
+
+  function onClick() {
+    setLogin(true);
+    onLoginClick(true);
+  }
+
+  return (
+    <div>
+      <div>
+        This is login page.
+        {show_or_hide
+          ? "Should show the Nav bar now."
+          : "Click on the button to show Nav bar."}
+      </div>
+      <button onClick={onClick}> {loggedin ? "LoggedIn" : "Login"}</button>
+    </div>
+  );
+}
+
+const NavBar = ({ match }) => (
   <div className="header">
     <ul>
       <li>
@@ -63,13 +120,22 @@ const nav_bar = ({ match }) => (
       <li>
         <Link to={"/room"}>Room Context API</Link>
       </li>
+      <li>
+        <Link to={"/login"}>Login</Link>
+      </li>
     </ul>
   </div>
 );
 
+/*
 const GameApp = ({ rows }) => (
   <div>
     <Game rows_={rows || 15} /> <Footer />
+  </div>
+);*/
+const GameApp = ({ match }) => (
+  <div>
+    <Game rows_={!!match ? match.params.id : 15} /> <Footer />
   </div>
 );
 
