@@ -22,6 +22,7 @@ import ThreeCounts from "./ThreeCounts";
 import FetchDemo from "./fetchDemo";
 import FetchDemoFlaskSocketIO from "./fetchDemoFlaskSocketIO";
 import RoomApp from "./room";
+import Modal from "./modal";
 import {
   BrowserRouter as Router,
   Route,
@@ -56,6 +57,7 @@ function App() {
       <Route path="/threecounts" component={threecounts} />
       <Route path="/fetchdemo" component={fetchdemo} />
       <Route path="/room" component={room} />
+      <Route path="/modal" component={ModalApp} />
       <Provider store={store}>
         <Route exact path="/game/:id?" component={GameApp} />
       </Provider>
@@ -121,6 +123,9 @@ const NavBar = ({ match }) => (
         <Link to={"/room"}>Room Context API</Link>
       </li>
       <li>
+        <Link to={"/modal"}>Modal</Link>
+      </li>
+      <li>
         <Link to={"/login"}>Login</Link>
       </li>
     </ul>
@@ -161,6 +166,30 @@ const room = ({ match }) => (
     <RoomApp />
   </div>
 );
+
+class ModalApp extends React.Component {
+  state = { isOpen: false };
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        {!this.state.isOpen && (
+          <button onClick={this.toggleModal}>Open the modal</button>
+        )}
+
+        <Modal show={this.state.isOpen} onClose={this.toggleModal}>
+          Here's some content for the modal
+        </Modal>
+      </div>
+    );
+  }
+}
 /*
 ReactDOM.render(
   <Game rows='15'/>,
