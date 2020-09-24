@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import PropTypes from "prop-types";
 
 /*
 class Square extends React.Component {
@@ -57,6 +58,15 @@ function Square(props) {
     </button>
   );
 }
+
+Square.propTypes = {
+  stepNumber: PropTypes.number.isRequired,
+  is_bule_color: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  key: PropTypes.number.isRequired,
+  clicked: PropTypes.bool.isRequired,
+};
 
 // Must export!
 export default Square;
