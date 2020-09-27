@@ -30,6 +30,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import { BeerListContainer } from "./beerListContainer";
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 //const store = createStore(rootReducers)
@@ -61,7 +62,7 @@ function App() {
       <Provider store={store}>
         <Route exact path="/game/:id?" component={GameApp} />
       </Provider>
-
+      <Route path="/beerListcontainer" component={BeerListContainer} />
       <Route
         path="/login"
         render={(props) => (
@@ -125,6 +126,12 @@ const NavBar = ({ match }) => (
       <li>
         <Link to={"/modal"}>Modal</Link>
       </li>
+      <li>
+        <Link to={"/beerListcontainer"}>
+          BeerListContaineral Mocha Test cases
+        </Link>
+      </li>
+
       <li>
         <Link to={"/login"}>Login</Link>
       </li>

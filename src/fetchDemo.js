@@ -1,27 +1,34 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class FetchDemo extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: "",
+      posts: [],
+    };
+  }
+  /*state = {
     error: "",
     posts: [],
-  };
+  };*/
 
   componentDidMount() {
     axios
-      .get(`http://www.reddit.com/r/${this.props.subreddit}.json`)
-      .then((res) => {
-        const posts = res.data.data.children.map((obj) => obj.data);
+      .get(`https://www.reddit.com/r/${this.props.subreddit}.json`)
+      .then((resp) => {
+        const posts = resp.data.data.children.map((obj) => obj.data);
         this.setState({ posts });
       })
       .catch((error) => {
         if (error.response) {
-          let error = "Response with Error: " + error.response;
-          this.setState({ error });
+          this.setState({ error: "Response with Error: " + error.response });
         } else if (error.request) {
           this.setState({ error: "No response after requeset." });
         } else {
-          this.setState({ error: "Unknown errors" });
+          this.setState({ error: "Unknown errors: " + error });
         }
       });
   }
@@ -46,13 +53,17 @@ class FetchDemo extends React.Component {
       <div>
         <h1>{`/r/${this.props.subreddit}`}</h1>
         <ul>
-          {this.state.posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
+          {this.state.posts.map((post, index) => (
+            <li key={index}>{post.title}</li>
           ))}
         </ul>
       </div>
     );
   }
 }
+FetchDemo.prpoTypes = {
+  error: PropTypes.string.isRequired,
+  posts: PropTypes.func.isRequired,
+};
 
 export default FetchDemo;
