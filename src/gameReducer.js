@@ -1,24 +1,38 @@
-import { RESET, CLICK_GRID, CLICK_STEP, CLICK_TOGGLE, INPUT_SIZE } from './actions';
+import {
+  RESET,
+  CLICK_GRID,
+  CLICK_STEP,
+  CLICK_TOGGLE,
+  INPUT_SIZE,
+} from "./actions";
+
+import produce from "immer";
 
 let rows = 15; // 8 * 8 button matrix
 let win_rule = 5; // 5 adjacent buttons with same char.
 if (win_rule > rows) {
-  alert("Error: the board must bigger than " + win_rule + " X " + win_rule + "!!!");
+  alert(
+    "Error: the board must bigger than " + win_rule + " X " + win_rule + "!!!"
+  );
 }
 
 const initialState = {
-  history: [{
-    squares: Array(rows ** 2).fill(null),
-  }], // initiate state of squares of the board and keep all the steps' states of all squares.
+  history: [
+    {
+      squares: Array(rows ** 2).fill(null),
+    },
+  ], // initiate state of squares of the board and keep all the steps' states of all squares.
   xIsNext: true,
   stepNumber: 0,
   rows: rows, // also is the number of columns.
   max_rows: 20, //max limit of rows.
   fixed: false, // after rows is changed in left-up input box, it is true. No more change further.
-  locations: [{
-    row: 0,
-    col: 0,
-  }],
+  locations: [
+    {
+      row: 0,
+      col: 0,
+    },
+  ],
   winner_stepNumber: -1,
   winner: null,
   order: "Ascend",
@@ -30,7 +44,8 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  console.log('reducer', state, action);
+  console.log("reducer", state, action);
+  /*
   switch (action.type) {
     case RESET:
       return { ...initialState, rows: rows };
@@ -44,30 +59,73 @@ export default function reducer(state = initialState, action) {
       return input_size(state, action.size);
     default:
       return state;
-  }
-};
+  }*/
+  /*
+  switch (action.type) {
+    case RESET:
+      return produce(state, (draft) => initialState);
+    case CLICK_GRID:
+      return produce(
+        state,
+        (draft) => (draft = change_state_grid(state, action.i))
+      );
+    case CLICK_STEP:
+      return produce(
+        state,
+        (draft) => (draft = change_state_step(state, action.step))
+      );
 
+    case CLICK_TOGGLE:
+      return produce(state, (draft) => (draft = toggle_order(state)));
+    case INPUT_SIZE:
+      return produce(
+        state,
+        (draft) => (draft = input_size(state, action.size))
+      );
+    default:
+      return produce(state, (draft) => {
+        draft = draft;
+      });
+  }*/
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case RESET:
+        return { ...initialState, rows: rows };
+      case CLICK_GRID:
+        return change_state_grid(draft, action.i);
+      case CLICK_STEP:
+        return change_state_step(draft, action.step);
+      case CLICK_TOGGLE:
+        return toggle_order(draft);
+      case INPUT_SIZE:
+        return input_size(draft, action.size);
+      default:
+        return draft;
+    }
+  });
+}
 
 function input_size(state, size) {
+  if (state["rows"] === size) {
+    return state;
+  }
   var tmp_state = { ...state };
   if (isNaN(size)) {
     alert("Size is not an integer!");
-  }
-  else if (size > state.max_rows) {
+  } else if (size > state.max_rows) {
     alert("Size over " + state.max_rows);
   } else {
-    tmp_state['rows'] = size;
+    tmp_state["rows"] = size;
   }
   return tmp_state;
 }
 
-
 function toggle_order(state) {
   var tmp_state = { ...state };
-  if (tmp_state.order === 'Ascend') {
-    tmp_state.order = 'Descend'
+  if (tmp_state.order === "Ascend") {
+    tmp_state.order = "Descend";
   } else {
-    tmp_state.order = 'Ascend'
+    tmp_state.order = "Ascend";
   }
   return tmp_state;
 }
@@ -75,7 +133,7 @@ function toggle_order(state) {
 function change_state_step(state, step) {
   var tmp_state = { ...state };
   tmp_state.stepNumber = step;
-  tmp_state.xIsNext = (step % 2) === 0;
+  tmp_state.xIsNext = step % 2 === 0;
   return tmp_state;
 }
 
@@ -92,7 +150,7 @@ function handleClick(state, i) {
   }
   var tmp_state = { ...state };
   // Once click on the board the size input of the board fixed.
-  tmp_state['fixed'] = tmp_state['fixed'] || true;
+  tmp_state["fixed"] = tmp_state["fixed"] || true;
   const history = state.history.slice(0, state.stepNumber + 1);
   const current = history[history.length - 1];
   const squares = current.squares.slice();
@@ -102,38 +160,40 @@ function handleClick(state, i) {
     return tmp_state;
   }
   // Add X or O, then update state.
-  squares[i] = state.xIsNext ? 'X' : 'O';
+  squares[i] = state.xIsNext ? "X" : "O";
   let winner_array = getWinner(squares, state);
   if (!!winner_array) {
     tmp_state["winner_stepNumber"] = history.length + 1;
     tmp_state["winner"] = squares[i];
     tmp_state["match"] = winner_array;
   }
-  let loc = find_row_col_by_index(i, state)
-  tmp_state["history"] = history.concat([{
-    squares: squares,
-  }]);
+  let loc = find_row_col_by_index(i, state);
+  tmp_state["history"] = history.concat([
+    {
+      squares: squares,
+    },
+  ]);
   tmp_state["stepNumber"] = history.length;
   tmp_state["xIsNext"] = !state.xIsNext;
   tmp_state["locations"] = locations.concat([loc]);
   tmp_state = change_game_info(tmp_state);
-  return tmp_state
+  return tmp_state;
 }
 
 function find_row_col_by_index(i, state) {
   const row = Math.floor(i / state.rows) + 1;
   const col = i - (row - 1) * state.rows + 1;
-  return { row: row, col: col }
+  return { row: row, col: col };
 }
 
 function change_game_info(tmp_state) {
   if (tmp_state.winner_stepNumber > -1) {
-    tmp_state["status"] = 'Winner: ' + tmp_state.winner;
+    tmp_state["status"] = "Winner: " + tmp_state.winner;
     tmp_state["win_color"] = "red";
-    tmp_state["bold2"] = 'bold';
+    tmp_state["bold2"] = "bold";
   } else {
-    tmp_state["status"] = 'Next player: ' + (tmp_state.xIsNext ? 'X' : 'O');
-    tmp_state["win_color"] = 'black';
+    tmp_state["status"] = "Next player: " + (tmp_state.xIsNext ? "X" : "O");
+    tmp_state["win_color"] = "black";
   }
   return tmp_state;
 }
@@ -189,7 +249,6 @@ function look_for_winner(i, j, squares, state) {
   return null;
 }
 
-
 function right_count(squares, row, col, state) {
   var n = row * state.rows + col;
   var locations = [n];
@@ -205,7 +264,6 @@ function right_count(squares, row, col, state) {
   }
   return [adjacent_count, locations];
 }
-
 
 function down_count(squares, row, col, state) {
   var n = row * state.rows + col;
@@ -266,15 +324,14 @@ function look_for_row_column_in_board(r, c, squares, state) {
   if (squares[n]) {
     return [r, c]; // row and colum start from 0
   }
-  return null
+  return null;
 }
-
+/*
 function toggle(tmp_state) {
-  if (tmp_state.order === 'Ascend') {
-    tmp_state.order = 'Descend'
+  if (tmp_state.order === "Ascend") {
+    tmp_state.order = "Descend";
   } else {
-    tmp_state.order = 'Ascend'
+    tmp_state.order = "Ascend";
   }
   return tmp_state;
-}
-
+}*/

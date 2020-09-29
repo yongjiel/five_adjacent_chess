@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+<<<<<<< HEAD
+
+import React from "react";
 import "./index.css";
 
 function Footer() {
@@ -12,7 +14,9 @@ function Footer() {
           Each time each person in turn fills in one box which <br />
           is empty in the board. If 5 continous same chars <br />
           are in a same diretion like, vertical, horizontal, <br />
-          diagnol, that person will win the game.
+
+          diagonal, that person will win the game.
+
         </p>
       </div>
       <br />

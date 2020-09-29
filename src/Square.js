@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import './index.css';
+import React, { useState, useEffect } from "react";
+import "./index.css";
+import PropTypes from "prop-types";
 
 /*
 class Square extends React.Component {
@@ -37,15 +38,35 @@ function Square(props) {
     setClicked(true);
   }
 
+  function reset() {
+    setClicked(false);
+  }
+
+  useEffect(() => {
+    if (props.stepNumber === 0) {
+      reset();
+    }
+  });
+
   return (
-    <button className={"square " + (props.is_bule_color ? 'blue' : '')}
+    <button
+      className={"square " + (props.is_bule_color ? "blue" : "")}
       onClick={clicked ? undefined : doClick}
-    //  disabled={clicked}
+      //  disabled={clicked}
     >
       {props.value} {props.is_blue_color}
-    </button >
+    </button>
   );
 }
+
+Square.propTypes = {
+  stepNumber: PropTypes.number.isRequired,
+  is_bule_color: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  key: PropTypes.number.isRequired,
+  clicked: PropTypes.bool.isRequired,
+};
 
 // Must export!
 export default Square;
