@@ -85,7 +85,7 @@ function Login({ onLoginClick, show_or_hide }) {
   useEffect(() => {
     onLoginClick(false);
     setLogin(false);
-  }, []);
+  }, [onLoginClick, setLogin]);
 
   function onClick() {
     setLogin(true);
