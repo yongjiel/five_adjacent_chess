@@ -22,7 +22,7 @@ import ThreeCounts from "./ThreeCounts";
 import FetchDemo from "./fetchDemo";
 import FetchDemoFlaskSocketIO from "./fetchDemoFlaskSocketIO";
 import RoomApp from "./room";
-import Modal from "./modal";
+import ModalApp from "./modal";
 import {
   BrowserRouter as Router,
   Route,
@@ -85,7 +85,7 @@ function Login({ onLoginClick, show_or_hide }) {
   useEffect(() => {
     onLoginClick(false);
     setLogin(false);
-  }, []);
+  }, [onLoginClick, setLogin]);
 
   function onClick() {
     setLogin(true);
@@ -174,29 +174,6 @@ const room = ({ match }) => (
   </div>
 );
 
-class ModalApp extends React.Component {
-  state = { isOpen: false };
-
-  toggleModal = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        {!this.state.isOpen && (
-          <button onClick={this.toggleModal}>Open the modal</button>
-        )}
-
-        <Modal show={this.state.isOpen} onClose={this.toggleModal}>
-          Here's some content for the modal
-        </Modal>
-      </div>
-    );
-  }
-}
 /*
 ReactDOM.render(
   <Game rows='15'/>,

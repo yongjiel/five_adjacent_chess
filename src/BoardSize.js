@@ -1,13 +1,17 @@
 import React from "react";
-import "./index.css";
 import { input_size } from "./actions.js";
 import { connect } from "react-redux";
 import Rows from "./square_rows.js";
 
 class BoardSize extends React.Component {
-  input_size = (size) => {
+  constructor(props) {
+    super(props);
+    this.input_size = this.input_size.bind(this);
+  }
+
+  input_size(size) {
     this.props.input_size(size);
-  };
+  }
 
   componentDidMount() {
     if (!!this.props.rows_ && !this.props.fixed) {

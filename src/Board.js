@@ -1,13 +1,17 @@
 import React from "react";
-import "./index.css";
 import Square from "./Square.js";
 import { click_grid } from "./actions";
 import { connect } from "react-redux";
 
 class Board extends React.Component {
-  click_grid = (i) => {
+  constructor(props) {
+    super(props);
+    this.click_grid = this.click_grid.bind(this);
+  }
+
+  click_grid(i) {
     this.props.click_grid(i);
-  };
+  }
 
   renderSquare(i, is_bule_color) {
     return (

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a snapshot 1`] = `
+<div
+  className="App"
+>
+  <button
+    onClick={[Function]}
+  >
+    Open the modal
+  </button>
+</div>
+`;

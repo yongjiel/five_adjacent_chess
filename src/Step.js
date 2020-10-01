@@ -1,5 +1,4 @@
-import React from 'react';
-import './index.css';
+import React from "react";
 
 /*
 class Square extends React.Component {
@@ -19,20 +18,19 @@ class Square extends React.Component {
 }
 */
 function Step(props) {
-  var blue_color = props.i===props.current_step? "blue": "purple"
-  var fw = props.i===props.current_step? "bold": "normal"
+  var blue_color = props.i === props.current_step ? "blue" : "purple";
+  var fw = props.i === props.current_step ? "bold" : "normal";
   return (
-    <button 
-            style={ {
-                    fontWeight: fw,
-                    color: blue_color,
-                  } } 
-            onClick={ props.onClick}
-    > 
-      {props.order}, Step: {props.i}, current_step: {props.current_step},  Row: {props.current_location.row} Col: {props.current_location.col}
-   </button>
-
-
+    <button
+      style={{
+        fontWeight: fw,
+        color: blue_color,
+      }}
+      onClick={props.onClick}
+    >
+      {props.order}, Step: {props.i}, current_step: {props.current_step}, Row:{" "}
+      {props.current_location.row} Col: {props.current_location.col}
+    </button>
   );
 }
 

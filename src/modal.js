@@ -28,4 +28,32 @@ Modal.propTypes = {
   children: PropTypes.node,
 };
 
-export default Modal;
+class ModalApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOpen: false };
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {!this.state.isOpen && (
+          <button onClick={this.toggleModal}>Open the modal</button>
+        )}
+
+        <Modal show={this.state.isOpen} onClose={this.toggleModal}>
+          Here's some content for the modal
+        </Modal>
+      </div>
+    );
+  }
+}
+
+export default ModalApp;

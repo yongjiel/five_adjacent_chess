@@ -4,15 +4,16 @@ import Adapter from "enzyme-adapter-react-16";
 import Enzyme, { shallow, mount } from "enzyme";
 import FetchDemoFLaskSocketIO from "../src/fetchDemoFlaskSocketIO";
 
-Enzyme.configure({ adapter: new Adapter() });
-
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe("FetchDemoFLaskSocketIO", () => {
   let mock;
 
-  before(() => {
+  // before(() => {  // for mocha
+  beforeAll(() => {
     mock = new MockAdapter(axios);
   });
 
@@ -20,7 +21,8 @@ describe("FetchDemoFLaskSocketIO", () => {
     mock.reset();
   });
 
-  after(() => {
+  // after(() => {  // for mocha
+  afterAll(() => {
     mock.restore();
   });
 
@@ -36,7 +38,7 @@ describe("FetchDemoFLaskSocketIO", () => {
     ).to.equal(true);
   });
 
-  it("Posts should be 2", () => {
+  it("Posts should be 2", (done) => {
     const api = "api";
 
     let response = [
@@ -59,6 +61,7 @@ describe("FetchDemoFLaskSocketIO", () => {
       expect(wrapper.state("posts")).to.deep.equal(response.map((obj) => obj));
       wrapper.update();
       expect(wrapper.find("li").length).to.equal(2);
+      done();
     });
   });
 });

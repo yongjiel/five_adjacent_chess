@@ -13,7 +13,9 @@ Enzyme.configure({ adapter: new Adapter() });
 describe("FetchDemo", () => {
   let mock;
 
-  before(() => {
+  //before(() => { //  for mocha
+  beforeAll(() => {
+    // for Jest
     mock = new MockAdapter(axios);
   });
 
@@ -21,7 +23,9 @@ describe("FetchDemo", () => {
     mock.reset();
   });
 
-  after(() => {
+  // after(() => {  // for mocha
+  afterAll(() => {
+    // for jest
     mock.restore();
   });
 
@@ -60,7 +64,7 @@ describe("FetchDemo", () => {
       },
     };
 
-    mock.onGet("https://www.reddit.com/r/reactjs.json").reply(200, response);
+    mock.onGet(`https://www.reddit.com/r/${reactjs}.json`).reply(200, response);
     /*nock("http://www.reddit.com/")
       .get("/r/reactjs.json")
       .reply(200, response, { "Access-Control-Allow-Origin": "*" });*/

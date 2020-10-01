@@ -1,12 +1,11 @@
 import React from "react";
-import "./index.css";
 import Board from "./Board.js";
 import BoardSize from "./BoardSize.js";
 import StepList from "./StepList.js";
 import { connect } from "react-redux";
 import { reset } from "./actions";
 
-class Game extends React.Component {
+export class Game extends React.Component {
   restart() {
     this.props.reset();
   }

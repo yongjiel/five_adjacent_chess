@@ -56,7 +56,7 @@ export class InputArea extends Component {
 }
 
 InputArea.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export class BeerList extends Component {
@@ -73,7 +73,7 @@ export class BeerList extends Component {
   }
 }
 BeerList.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array,
 };
 // quik needs the below to start.
 //ReactDOM.render(<BeerListContainer />, document.getElementById("root"));
