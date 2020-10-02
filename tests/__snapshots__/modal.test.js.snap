@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a snapshot 1`] = `
+exports[`Modal renders a snapshot 1`] = `
 <div
   className="App"
 >

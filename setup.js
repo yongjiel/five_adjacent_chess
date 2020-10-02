@@ -1,4 +1,4 @@
-require("babel-core/register")();
+require("@babel/register")();
 /*
 var jsdom = require("jsdom").jsdom;
 global.document = jsdom("");*/

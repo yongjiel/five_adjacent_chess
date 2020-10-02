@@ -12,7 +12,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe("FetchDemoFLaskSocketIO", () => {
   let mock;
 
-  // before(() => {  // for mocha
+  //before(() => {
+  // for mocha
   beforeAll(() => {
     mock = new MockAdapter(axios);
   });
@@ -21,7 +22,8 @@ describe("FetchDemoFLaskSocketIO", () => {
     mock.reset();
   });
 
-  // after(() => {  // for mocha
+  //after(() => {
+  // for mocha
   afterAll(() => {
     mock.restore();
   });

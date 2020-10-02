@@ -1,0 +1,5 @@
+require:
+  #  - babel-plugin-require-context-hook/register
+  # "@babel/register"
+  - setup.js
+recursive: true

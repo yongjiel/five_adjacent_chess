@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.4",
-    "@testing-library/user-event": "^12.1.6",
     "axios": "^0.20.0",
     "axios-mock-adapter": "^1.18.2",
     "babel-preset-es2015": "^6.24.1",
@@ -14,7 +11,10 @@
     "chai": "^4.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
+    "expect.js": "^0.3.1",
     "immer": "^7.0.9",
+    "jquery": "^3.5.1",
+    "js-cookie": "^2.2.1",
     "jsdom": "^16.4.0",
     "moxios": "^0.4.0",
     "nock": "^13.0.4",
@@ -55,19 +55,29 @@
     "@babel/plugin-transform-react-jsx-self": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "@babel/register": "^7.11.5",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@testing-library/user-event": "^12.1.6",
+    "@types/jest": "^26.0.14",
     "babel-loader": "^8.1.0",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "babel-register": "^6.26.0",
     "css-loader": "^4.3.0",
     "prettier": "2.1.0",
     "react-test-renderer": "^16.13.1",
     "reactstrap": "^8.6.0",
     "style-loader": "^1.2.1",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "babel-register": "^6.26.0"
+    "webpack-cli": "^3.3.12"
   },
   "jest": {
     "setupFiles": [
       "./private/mocks/runtime.js"
+    ],
+    "testMatch": [
+      "tests/*.[jt]s?(x)",
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
     ]
   }
 }

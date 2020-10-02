@@ -13,7 +13,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe("FetchDemo", () => {
   let mock;
 
-  //before(() => { //  for mocha
+  //before(() => {
+  //  for mocha
   beforeAll(() => {
     // for Jest
     mock = new MockAdapter(axios);
@@ -23,7 +24,8 @@ describe("FetchDemo", () => {
     mock.reset();
   });
 
-  // after(() => {  // for mocha
+  //after(() => {
+  // for mocha
   afterAll(() => {
     // for jest
     mock.restore();
