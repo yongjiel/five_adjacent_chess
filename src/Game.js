@@ -6,6 +6,11 @@ import { connect } from "react-redux";
 import { reset } from "./actions";
 
 export class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.restart = this.restart.bind(this);
+  }
+
   restart() {
     this.props.reset();
   }
@@ -20,19 +25,18 @@ export class Game extends React.Component {
       <div key={"Game1"}>
         <BoardSize rows_={this.props.rows_} /> <br />
         <div className="game">
-          <div className="game-board" key={"Board1"}>
-            <Board />
-          </div>
+          <Board />
+
           <div className="game-info">
-            <div>
+            <div className="game-reset">
               <ul>
-                <button onClick={() => this.restart()}>
-                  {" "}
+                <button className="reset" onClick={() => this.restart()}>
                   Restart the Game
                 </button>
               </ul>
             </div>
             <div
+              className="winner"
               style={{
                 color: this.props.win_color,
                 fontWeight: this.props.bold2,
@@ -40,9 +44,7 @@ export class Game extends React.Component {
             >
               {this.props.status}
             </div>
-            <div className="step-list">
-              <StepList />
-            </div>
+            <StepList />
           </div>
         </div>
       </div>
@@ -53,7 +55,7 @@ export class Game extends React.Component {
 // Add this function:
 // Crucial point. store is a multi reducers collection.
 // Need to point out which reducer to use.
-function mapStateToProps(store) {
+export function mapStateToProps(store) {
   return {
     status: store.reducer.status,
     win_color: store.reducer.win_color,
@@ -64,10 +66,15 @@ function mapStateToProps(store) {
 // in this object, keys become prop names,
 // and values should be action creator functions.
 // They get bound to `dispatch`.
-const mapDispatchToProps = {
-  reset,
-};
+// const mapDispatchToProps = {
+// reset,
+// };
+
+export const mapDispatchToProps = (dispatch) => ({
+  reset: () => dispatch(reset()),
+});
 
 // Must export!
 //export default Game;
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+const ConnectedGame = connect(mapStateToProps, mapDispatchToProps)(Game);
+export default ConnectedGame;

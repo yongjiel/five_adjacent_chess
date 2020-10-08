@@ -57,7 +57,7 @@ class StepList extends React.Component {
       reverse = true;
     }
     return (
-      <div>
+      <div className="step-list">
         <ul>
           <button onClick={() => this.click_toggle()}>
             <b>{this.props.order}</b>

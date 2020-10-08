@@ -1,0 +1,1517 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game should render with given state from Redux store 1`] = `
+<div>
+  <div
+    className="game-input"
+  >
+    <div
+      className="rows"
+    >
+      <input
+        disabled={false}
+        id="rows"
+        onChange={[Function]}
+        placeholder={15}
+        size="10"
+        style={Object {}}
+        value={15}
+      />
+       
+      <b>
+        rows
+      </b>
+       and 
+      <b>
+        columns
+      </b>
+    </div>
+  </div>
+   
+  <br />
+  <div
+    className="game"
+  >
+    <div
+      className="game-board"
+    >
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+      <div
+        className="board-row"
+      >
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+        <button
+          className="square "
+          onClick={[Function]}
+        >
+           
+        </button>
+      </div>
+    </div>
+    <div
+      className="game-info"
+    >
+      <div
+        className="game-reset"
+      >
+        <ul>
+          <button
+            className="reset"
+            onClick={[Function]}
+          >
+            Restart the Game
+          </button>
+        </ul>
+      </div>
+      <div
+        className="winner"
+        style={
+          Object {
+            "color": null,
+            "fontWeight": null,
+          }
+        }
+      />
+      <div
+        className="step-list"
+      >
+        <ul>
+          <button
+            onClick={[Function]}
+          >
+            <b>
+              Ascend
+            </b>
+          </button>
+        </ul>
+        <ol
+          reversed={false}
+        >
+          <li
+            className="step_list"
+          >
+            <button
+              onClick={[Function]}
+              style={
+                Object {
+                  "color": "blue",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Ascend
+              , Step: 
+              0
+              , current_step: 
+              0
+              , Row:
+               
+              0
+               Col: 
+              0
+            </button>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+`;

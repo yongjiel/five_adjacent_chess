@@ -59,12 +59,11 @@ function Square(props) {
 }
 
 Square.propTypes = {
-  stepNumber: PropTypes.number.isRequired,
-  is_bule_color: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  key: PropTypes.number.isRequired,
-  clicked: PropTypes.bool.isRequired,
+  stepNumber: PropTypes.number,
+  is_bule_color: PropTypes.bool,
+  value: PropTypes.string,
+  onClick: PropTypes.func,
+  clicked: PropTypes.bool,
 };
 
 // Must export!

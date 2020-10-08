@@ -1,4 +1,8 @@
 {
   "presets": ["@babel/preset-react", "@babel/preset-env"],
-  "plugins": ["@babel/plugin-transform-react-jsx", "require-context-hook"]
+  "plugins": [
+    "@babel/plugin-transform-react-jsx",
+    "require-context-hook",
+    "@babel/plugin-transform-runtime"
+  ]
 }

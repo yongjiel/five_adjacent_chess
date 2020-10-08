@@ -10,7 +10,7 @@ This is also named in Chinese chest 'Five finger chest'.
 import React, { useState, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Game from "./Game";
+import ConnectedGame from "./Game";
 import Footer from "./Footer";
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
@@ -147,7 +147,7 @@ const GameApp = ({ rows }) => (
 );*/
 const GameApp = ({ match }) => (
   <div>
-    <Game rows_={!!match ? match.params.id : 15} /> <Footer />
+    <ConnectedGame rows_={!!match ? match.params.id : 15} /> <Footer />
   </div>
 );
 

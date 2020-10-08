@@ -31,14 +31,23 @@ class Board extends React.Component {
     const row_c = this.props.rows;
     var rows = [];
     for (var i = 0; i < row_c; i++) {
-      rows.push(<div className="board-row" key={"row#" + i} />);
+      let tmp = [];
       for (var j = 0; j < row_c; j++) {
         let n = i * row_c + j;
-        rows.push(this.renderSquare(n, match.indexOf(n) > -1));
+        tmp.push(this.renderSquare(n, match.indexOf(n) > -1));
       }
+      rows.push(
+        <div className="board-row" key={"row#" + i}>
+          {tmp}
+        </div>
+      );
     }
 
-    return <div>{rows}</div>;
+    return (
+      <div className="game-board" key={"Board1"}>
+        {rows}
+      </div>
+    );
   }
 }
 
