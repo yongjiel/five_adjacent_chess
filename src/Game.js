@@ -9,9 +9,6 @@ class Game extends React.Component {
 
     let rows = props.rows; // 8 * 8 button matrix
     let win_rule = 5; // 5 adjacent buttons with same char.
-    if (win_rule > rows){
-      alert("Error: the board must bigger than " + win_rule +  " X " + win_rule + "!!!");
-    } 
     let lines = this.generate_win_lines(rows);
     
 
@@ -274,18 +271,26 @@ class Game extends React.Component {
   }
 
   disableInput(e){
-    if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
+    var value = e.target.value;
+    if( value && ! value.toString().match(/^\d+$/)){
+      this.restart();
+    } else if (this.state.win_rule > value){
+      this.restart();
+    } else if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
       this.setState({
         fixed: true,
       })
     }
   }
 
-  updateInputValue(evt){
-    var value = evt.target.value;
+  updateInputValue(e){
+    var value = e.target.value;
     if( value && ! value.toString().match(/^\d+$/)){
       alert("Value must be integer!!!");
-      return;
+    }
+    if (this.state.win_rule > value){
+      alert("Error: the board must bigger than " + this.state.win_rule +  " X " +
+            this.state.win_rule + "!!!");
     }
     this.setState({
       rows: value,
@@ -310,7 +315,7 @@ class Game extends React.Component {
 
   moves(){
     const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    //const current = history[this.state.stepNumber];
     //const winner = calculateWinner(current.squares);
     
 
