@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import Board from './Board.js';
-import Rows from './square_rows.js';
+import Rows from './input_rows.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Game extends React.Component {
         row: 0,
         col: 0,
       }],
-      bold: -1,
+      bold_step: -1,
       winner_stepNumber: -1,
       winner: null,
       order: "Ascend",
@@ -236,7 +236,7 @@ class Game extends React.Component {
         row: row,
         col: col
       }]),
-      bold: history.length,
+      bold_step: history.length,
       fixed: true,
     });
   }
@@ -252,7 +252,7 @@ class Game extends React.Component {
 
   changeColorAndJumpTo(step){
             this.setState({
-              bold: step,
+              bold_step: step,
             })
             this.jumpTo(step)
     }
@@ -324,14 +324,14 @@ class Game extends React.Component {
          'Go to move #' + move :
          'Go to game start';
       const current_location = this.state.locations[move];
-      var bold = this.state.bold
-      var bold1 = bold > -1? "bold": ""
-      var blue_color = bold>-1? "blue": ""
+      var bold_step = this.state.bold_step
+      var bold1 = bold_step > -1? "bold": ""
+      var blue_color = bold_step > -1? "blue": ""
       // bind method is very interesting. It is able to take extra args.
       return (
         <li key={move}>
            <button 
-                    style={ bold===move? {
+                    style={ bold_step===move? {
                             fontWeight: bold1,
                             color: blue_color,
                           } : {} } 
@@ -361,7 +361,6 @@ class Game extends React.Component {
       status = 'Winner: ' + this.state.winner ;
       win_color = "red"
       bold2 = 'bold'
-    
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       win_color = 'black'
