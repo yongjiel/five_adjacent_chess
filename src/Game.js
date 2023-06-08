@@ -1,7 +1,9 @@
 import React from 'react';
+//import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import Board from './Board.js';
 import Rows from './input_rows.js';
+
 
 class Game extends React.Component {
   constructor(props) {
@@ -11,7 +13,6 @@ class Game extends React.Component {
     let win_rule = 5; // 5 adjacent buttons with same char.
     let lines = this.generate_win_lines(rows);
     
-
     this.state = {
       history: [{
         squares: Array(rows ** 2).fill(null),
@@ -246,16 +247,14 @@ class Game extends React.Component {
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });
-
-
   }
 
   changeColorAndJumpTo(step){
-            this.setState({
-              bold_step: step,
-            })
-            this.jumpTo(step)
-    }
+    this.setState({
+      bold_step: step,
+    })
+    this.jumpTo(step)
+  }
 
   focusInCurrentTarget(relatedTarget, currentTarget){
     if (relatedTarget === null) return false;
@@ -394,9 +393,9 @@ class Game extends React.Component {
           </div>
         </div>
       </div>
-    );
+    );  
   }
-}
+             }
 
 
 // Must export!
