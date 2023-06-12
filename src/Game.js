@@ -366,14 +366,14 @@ class Game extends React.Component {
     }
     // When using bind in updateInputValue function, this can be used inside updateInputValue()
     return (
-      <div  key={"Game1"}>
+      <div  key={"Game1"} className="game">
         <div className="game-input" key={"rows"}> 
           <Rows rows={this.state.rows} 
                 onChange={ this.updateInputValue.bind(this) }
                 onBlur={this.disableInput.bind(this)}
                 fixed={this.state.fixed}/> 
         </div>  <br/> 
-        <div className="game">
+        <div className="board">
           <div className="game-board" key={"Board1"}>
             <Board
               match={this.state.match}
@@ -384,7 +384,7 @@ class Game extends React.Component {
 
           </div>
           <div className="game-info">
-             <ul><button onClick={()=>this.restart()}> Restart the Game</button></ul>
+             <ul><button onClick={()=>this.restart()} className="restart"> Restart </button></ul>
              <ul><div style={this.state.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
             <ul><button onClick={ this.toggle.bind(this) }><b>{this.state.order}</b></button></ul>
             <ol reversed={this.state.order==='Descend'? true: false}>
@@ -395,7 +395,7 @@ class Game extends React.Component {
       </div>
     );  
   }
-             }
+}
 
 
 // Must export!

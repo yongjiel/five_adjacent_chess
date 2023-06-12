@@ -1,3 +1,9 @@
+
+.root {
+  display: flex;
+  flex-direction: row;
+}
+
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
@@ -40,9 +46,10 @@ ol, ul {
   background: #ddd;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
+.board {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
 }
 
 .game-info {
@@ -53,7 +60,7 @@ ol, ul {
   height: 200px;
 }
 
-.game-input{
+.game-input {
   /*background: gold;*/
 }
 
@@ -63,5 +70,34 @@ ol, ul {
   max-height: 80%;
 }
 
+.game-info  ol {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  list-style: none;
+}
 
+.game-info  ol button {
+  width: 220px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.game-info  ol button:hover {
+  color: #1da1f2;
+}
+
+.game-info ul {
+  list-style: none;
+}
+
+.game-info .restart{
+  height: 55px;
+  border-radius: 50%;
+  color: #052ee6;
+  background: #eeebeb;
+  border-width: 0.5px;
+  border-color: rgb(15, 14, 14);
+}
 /*@import '~bootstrap/scss/bootstrap.scss';*/
