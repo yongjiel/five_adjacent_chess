@@ -207,6 +207,10 @@ class Game extends React.Component {
   }
 
   handleClick(i){
+    // actually this function will be passed into board.js and to square.js. 
+    // That is not convenient to do that since the organization like this is
+    // not good for maitenance. Normally this props drilling or top data flow down
+    // principle in react.js. This is where Redux or React context API coming in.
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares =  current.squares.slice();

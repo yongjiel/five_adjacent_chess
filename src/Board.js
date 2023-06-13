@@ -8,8 +8,9 @@ class Board extends React.Component {
     return (
       <Square 
           match={match}
-          value={ this.props.squares[i] } 
-          onClick={ () => this.props.onClick(i) } key={"Square#"+i}/>
+          value={ this.props.squares[i] }
+          index={i}
+          onClick={this.props.onClick} key={"Square#"+i}/>
     );
   }
 
