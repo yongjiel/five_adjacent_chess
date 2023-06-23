@@ -274,6 +274,11 @@ class Game extends React.Component {
   }
 
   disableInput(e){
+    if (this.state.win_rule > this.state.rows){
+      alert("Error: Current width " + this.state.rows +
+            ". The board must bigger than " + this.state.win_rule +  " X " +
+            this.state.win_rule + "!!!");
+    }
     var value = e.target.value;
     if( value && ! value.toString().match(/^\d+$/)){
       this.restart();
@@ -286,15 +291,22 @@ class Game extends React.Component {
     }
   }
 
+  wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+  }
+
   updateInputValue(e){
     var value = e.target.value;
     if( value && ! value.toString().match(/^\d+$/)){
       alert("Value must be integer!!!");
     }
-    if (this.state.win_rule > value){
-      alert("Error: the board must bigger than " + this.state.win_rule +  " X " +
-            this.state.win_rule + "!!!");
-    }
+    
+    //this.wait(5000);
+
     this.setState({
       rows: value,
     })
@@ -368,6 +380,7 @@ class Game extends React.Component {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       win_color = 'black'
     }
+
     // When using bind in updateInputValue function, this can be used inside updateInputValue()
     return (
       <div  key={"Game1"} className="game">
