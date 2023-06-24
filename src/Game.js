@@ -274,11 +274,7 @@ class Game extends React.Component {
   }
 
   disableInput(e){
-    if (this.state.win_rule > this.state.rows){
-      alert("Error: Current width " + this.state.rows +
-            ". The board must bigger than " + this.state.win_rule +  " X " +
-            this.state.win_rule + "!!!");
-    }
+    
     var value = e.target.value;
     if( value && ! value.toString().match(/^\d+$/)){
       this.restart();
@@ -306,7 +302,12 @@ class Game extends React.Component {
     }
     
     //this.wait(5000);
-
+    if (this.state.win_rule > value){
+      alert("Error: Current width " + value +
+            ". The board must bigger than " + this.state.win_rule +  " X " +
+            this.state.win_rule + "!!!");
+      this.restart();
+    }
     this.setState({
       rows: value,
     })
@@ -325,7 +326,7 @@ class Game extends React.Component {
   }
 
   restart(){
-    this.setState(this.state_cp)
+    this.setState({...this.state_cp})
   }
 
   moves(){
@@ -391,7 +392,7 @@ class Game extends React.Component {
                 fixed={this.state.fixed}/> 
         </div>  <br/> 
         <div className="board">
-          <div className="game-board" key={"Board1"}>
+          <div className="game-board" key={"Board1"} >
             <Board
               match={this.state.match}
               rows={this.state.rows} 

@@ -18,6 +18,8 @@ class Square extends React.Component {
   }
 }
 */
+// https://www.w3schools.com/react/react_usereducer.asp, about how to hoop up
+// reducer in functional component.
 function Square(props) {
   const [clicked, setClicked] = useState();
   var blue_color = props.match? "blue": "white";
