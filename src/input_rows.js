@@ -27,8 +27,9 @@ function Rows(props) {
   
   var color = 'lightgrey';
   return (
+    <>
     <div className="rows" key={"rows1"}>
-      <span className="rows" key={"rows11"}>
+      <span className="rows" key={"rows11"} style={{width: `55px`}} >
       <form onSubmit={handleSubmit}>
       <input  placeholder={props.rows}
          id={"rows"}
@@ -36,15 +37,16 @@ function Rows(props) {
          ref={inputRef}
         //onChange={evt => props.onChange(evt)}
         onBlur={evt => props.onBlur(evt)}
-        size="10"
+        size="5"
         disabled={props.fixed? true : false}
         style={props.fixed? {backgroundColor: color} : {}}
       >
       </input> 
       </form></span>
-      <span><b>rows</b> and <b>columns</b> </span>
+      <span className="rows" key={"rows12"}><b>rows</b> and <b>columns</b></span>
 
     </div>
+    </>
   );
 }
 

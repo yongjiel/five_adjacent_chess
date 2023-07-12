@@ -48,6 +48,7 @@ ol, ul {
 
 .board {
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
     flex: 1;
 }
@@ -101,3 +102,4 @@ ol, ul {
   border-color: rgb(15, 14, 14);
 }
 /*@import '~bootstrap/scss/bootstrap.scss';*/
+span.rows { float: left; display: block; width: 33%; }

@@ -393,7 +393,7 @@ class Game extends React.Component {
                 onChange={ this.updateInputValue.bind(this) }
                 onBlur={this.disableInput.bind(this)}
                 fixed={this.state.fixed}/> 
-        </div>  <br/> 
+        </div>  <br/> <br/>
         <div className="board">
           <div className="game-board" key={"Board1"} >
             <Board
