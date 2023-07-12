@@ -295,14 +295,17 @@ class Game extends React.Component {
    }
   }
 
-  updateInputValue(e){
-    var value = e.target.value;
+  updateInputValue(value){
+    
+    //var value = e.target.value;
+    console.log("11111111 " + value);
     if( value && ! value.toString().match(/^\d+$/)){
       alert("Value must be integer!!!");
     }
     
     //this.wait(5000);
     if (this.state.win_rule > value){
+      console.log('2222222 '+ value);
       alert("Error: Current width " + value +
             ". The board must bigger than " + this.state.win_rule +  " X " +
             this.state.win_rule + "!!!");
