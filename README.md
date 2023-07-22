@@ -9,3 +9,9 @@ npm install
 npm install bootstrap
 npm start
 Please check https://reactjs.org/docs/create-a-new-react-app.html#create-react-app for how to run the app.
+
+cd build
+npm run build
+surge
+
+# now served in abashed-dock.surge.sh.
