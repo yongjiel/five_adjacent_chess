@@ -20,7 +20,6 @@ class Game extends React.Component {
       xIsNext: true,
       stepNumber: 0,
       rows: rows, // also is the number of columns.
-      fixed: false, // after rows is changed in input box, it is true. No more change further.
       locations: [{
         row: 0,
         col: 0,
@@ -242,7 +241,6 @@ class Game extends React.Component {
         col: col
       }]),
       bold_step: history.length,
-      fixed: true,
     });
   }
 
@@ -258,33 +256,6 @@ class Game extends React.Component {
       bold_step: step,
     })
     this.jumpTo(step)
-  }
-
-  focusInCurrentTarget(relatedTarget, currentTarget){
-    if (relatedTarget === null) return false;
-    
-    var node = relatedTarget.parentNode;
-          
-    while (node !== null) {
-      if (node === currentTarget) return true;
-      node = node.parentNode;
-    }
-
-    return false;
-  }
-
-  disableInput(e){
-    
-    var value = e.target.value;
-    if( value && ! value.toString().match(/^\d+$/)){
-      this.restart();
-    } else if (this.state.win_rule > value){
-      this.restart();
-    } else if (!this.focusInCurrentTarget(e.relatedTarget, e.currentTarget)) {
-      this.setState({
-        fixed: true,
-      })
-    }
   }
 
   wait(ms){
@@ -391,8 +362,7 @@ class Game extends React.Component {
         <div className="game-input" key={"rows"}> 
           <Rows rows={this.state.rows} 
                 onChange={ this.updateInputValue.bind(this) }
-                onBlur={this.disableInput.bind(this)}
-                fixed={this.state.fixed}/> 
+                start={JSON.stringify(this.state) === JSON.stringify( this.state_cp)}/> 
         </div>  <br/> <br/>
         <div className="board">
           <div className="game-board" key={"Board1"} >

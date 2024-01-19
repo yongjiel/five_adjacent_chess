@@ -1,11 +1,16 @@
-import React, {useRef } from 'react';
+import React, {useRef, useState } from 'react';
 import './index.css';
 
 
 function Rows(props) {
   const inputRef = useRef();
+  const [fixed, setFixed] = useState(false);
   console.log('5555555 ');
   console.log(inputRef);
+  console.log(props.start);
+  if (fixed && props.start){
+    setFixed(false)
+  }
   
   if (typeof(inputRef.current) !== 'undefined'){
     if (inputRef.current.value !== parseInt(inputRef.current.value, 10)){
@@ -20,26 +25,25 @@ function Rows(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onChange(inputRef.current.value);
-    
-
+    props.onChange(inputRef.current.value); // need to throw out from this component
+                                            // to trigger another component changed.
   }
   
   var color = 'lightgrey';
   return (
     <>
     <div className="rows" key={"rows1"}>
-      <span className="rows" key={"rows11"} style={{width: `55px`}} >
-      <form onSubmit={handleSubmit}>
+      <span className="rows" key={"rows11"} style={{width: `80px`}} >
+      <form >
       <input  placeholder={props.rows}
          id={"rows"}
          //value={props.rows}
          ref={inputRef}
-        //onChange={evt => props.onChange(evt)}
-        onBlur={evt => props.onBlur(evt)}
+        onChange={evt => handleSubmit(evt)}
+        onBlur={evt => setFixed(true)}
         size="5"
-        disabled={props.fixed? true : false}
-        style={props.fixed? {backgroundColor: color} : {}}
+        disabled={fixed? true : false}
+        style={fixed? {backgroundColor: color} : {}}
       >
       </input> 
       </form></span>
