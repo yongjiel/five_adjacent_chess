@@ -53,7 +53,7 @@ ol, ul {
     flex: 1;
 }
 
-.game-info {
+.game_processes {
   margin-left: 20px;
   margin-right: 20px;
   max-width: 20%;
@@ -71,29 +71,29 @@ ol, ul {
   max-height: 80%;
 }
 
-.game-info  ol {
+.game_processes  ol {
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
   list-style: none;
 }
 
-.game-info  ol button {
+.game_processes  ol button {
   width: 220px;
   margin-bottom: 1px;
   cursor: pointer;
   border-radius: 20px;
 }
 
-.game-info  ol button:hover {
+.game_processes  ol button:hover {
   color: #1da1f2;
 }
 
-.game-info ul {
+.game_processes ul {
   list-style: none;
 }
 
-.game-info .restart{
+.game_processes .restart{
   height: 55px;
   border-radius: 50%;
   color: #052ee6;

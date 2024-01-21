@@ -5,20 +5,18 @@ import './index.css';
 function Rows(props) {
   const inputRef = useRef();
   const [fixed, setFixed] = useState(false);
-  console.log('5555555 ');
-  console.log(inputRef);
-  console.log(props.start);
+  
   if (fixed && props.start){
     setFixed(false)
   }
   
   if (typeof(inputRef.current) !== 'undefined'){
     if (inputRef.current.value !== parseInt(inputRef.current.value, 10)){
-      console.log("33333 "+ inputRef.current.value + " "+ props.rows);
+      //console.log("33333 "+ inputRef.current.value + " "+ props.rows);
       inputRef.current.value = props.rows;
     }
     else if (inputRef.current.value < props.rows) {
-      console.log("44444 "+ inputRef.current.value + " "+ props.rows);
+      //console.log("44444 "+ inputRef.current.value + " "+ props.rows);
       inputRef.current.value = props.rows;
     }
   }

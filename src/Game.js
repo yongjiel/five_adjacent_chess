@@ -3,7 +3,7 @@ import React from 'react';
 import './index.css';
 import Board from './Board.js';
 import Rows from './input_rows.js';
-
+import GameProcesses from "./game_processes.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -27,7 +27,6 @@ class Game extends React.Component {
       bold_step: -1,
       winner_stepNumber: -1,
       winner: null,
-      order: "Ascend",
       match: [], // hold the square indices(linear in array) when win the game.
       lines: lines,
       win_rule: win_rule, 
@@ -36,6 +35,9 @@ class Game extends React.Component {
     this.state_cp = {
       ...this.state
     };
+
+    this.changeColorAndJumpTo = this.changeColorAndJumpTo.bind(this);
+    this.restart = this.restart.bind(this);
   }
 
   generate_win_lines(rows){
@@ -258,14 +260,6 @@ class Game extends React.Component {
     this.jumpTo(step)
   }
 
-  wait(ms){
-    var start = new Date().getTime();
-    var end = start;
-    while(end < start + ms) {
-      end = new Date().getTime();
-   }
-  }
-
   updateInputValue(value){
     
     //var value = e.target.value;
@@ -274,7 +268,6 @@ class Game extends React.Component {
       alert("Value must be integer!!!");
     }
     
-    //this.wait(5000);
     if (this.state.win_rule > value){
       console.log('2222222 '+ value);
       alert("Error: Current width " + value +
@@ -287,74 +280,14 @@ class Game extends React.Component {
     })
   }
 
-  toggle(){
-    let order = this.state.order;
-    if (this.state.order === 'Ascend'){
-        order = 'Descend'
-    }else{
-        order = 'Ascend'
-    }
-    this.setState({
-      order: order
-    })
-  }
-
   restart(){
     this.setState({...this.state_cp})
-  }
-
-  moves(){
-    const history = this.state.history;
-    //const current = history[this.state.stepNumber];
-    //const winner = calculateWinner(current.squares);
-    
-
-    const moves = history.map((step, move) => {
-      const desc = move ?
-         'Go to move #' + move :
-         'Go to game start';
-      const current_location = this.state.locations[move];
-      var bold_step = this.state.bold_step
-      var bold1 = bold_step > -1? "bold": ""
-      var blue_color = bold_step > -1? "blue": ""
-      // bind method is very interesting. It is able to take extra args.
-      return (
-        <li key={move}>
-           <button 
-                    style={ bold_step===move? {
-                            fontWeight: bold1,
-                            color: blue_color,
-                          } : {} } 
-                    onClick={ this.changeColorAndJumpTo.bind(this, move) }
-            > 
-              {desc},  Row: {current_location.row} Col: {current_location.col}
-           </button>
-        </li>
-      );
-    });
-    return moves;
-  }
-
-  get_current_square(){
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    return current;
   }
 
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    let status;
-    let win_color;
-    let bold2;
-    if (this.state.winner_stepNumber > -1) {
-      status = 'Winner: ' + this.state.winner ;
-      win_color = "red"
-      bold2 = 'bold'
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      win_color = 'black'
-    }
+    
 
     // When using bind in updateInputValue function, this can be used inside updateInputValue()
     return (
@@ -374,13 +307,15 @@ class Game extends React.Component {
             />
 
           </div>
-          <div className="game-info">
-             <ul><button onClick={()=>this.restart()} className="restart"> Restart </button></ul>
-             <ul><div style={this.state.winner_stepNumber > -1? {color: win_color, fontWeight: bold2 }: {}}>{status}</div></ul>
-            <ul><button onClick={ this.toggle.bind(this) }><b>{this.state.order}</b></button></ul>
-            <ol reversed={this.state.order==='Descend'? true: false}>
-                {this.state.order==='Descend'? this.moves().reverse(): this.moves()}
-            </ol>
+          <div className="game_processes">
+            <GameProcesses restart={this.restart}
+                           moves={this.moves}
+                           winner={this.state.winner}
+                           xIsNext={this.state.xIsNext}
+                           changeColorAndJumpTo={this.changeColorAndJumpTo}
+                           state={this.state}
+
+            />
           </div>
         </div>
       </div>

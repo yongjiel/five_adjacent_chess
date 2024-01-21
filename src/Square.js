@@ -22,7 +22,6 @@ class Square extends React.Component {
 // reducer in functional component.
 function Square(props) {
   const [clicked, setClicked] = useState();
-  var blue_color = props.match? "blue": "white";
   // should have the index attribue here of square.
   // the the onClick can take it as arg or param.
   var i = props.index;
@@ -44,7 +43,7 @@ function Square(props) {
   return (
     <>
     <button className="square" onClick={ () => clicked ? undefined : doClick() } 
-       style={{backgroundColor: blue_color}}
+       style={{backgroundColor: props.match? "blue": "white"}}
     >
       {v}
     </button>
